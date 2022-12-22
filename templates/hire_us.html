@@ -1,0 +1,43 @@
+{%extends "home.html"%}
+{%block content%}
+<!-- Hire US Form -->
+<div class="content-wrapper" id="hire_us">
+    <h2>Make an Appointment</h2>
+    <p>To register, complete this form carefully. Once the reservation is submitted, wait for the confirmation through calls or messages. 
+    </p>
+    <form method="post">
+        
+        <p class="formfields">
+            <label>Name</label>
+            <input type="text" name="yourname" value="" placeholder="Enter your Name">
+        </p>
+        <p class="formfields">
+            <label>Email</label>
+            <input type="email" name="youremail" value="" placeholder="Enter your email">
+        </p>
+        <p class="formfields">
+            <label>Contact Number</label>
+            <input type="text" name="yournumber" value="" placeholder="Enter your contact number">
+        </p>
+        <p class="formfields">
+            <label>Complete Address</label>
+            <input type="text" name="youraddress" value="" placeholder="Enter your address">
+        </p>
+        <p class="formfields">
+            <label>Event</label>
+            <input type="text" name="yourevent" value="" placeholder="What kind of event?">
+        </p>
+        <p class="formfields">
+            <label>Package</label>
+            <textarea type="text" name="yourpackage" value="" placeholder="List down the package and other details"></textarea> 
+        </p>
+        <p class="formfields">
+            <input type="checkbox" name="confirm" value="yes">
+            All of your information are correct?
+        </p>
+        <p class="formfields">
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+</div>
+{%endblock content%}

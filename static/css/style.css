@@ -1,0 +1,144 @@
+/* Defaults & resets */
+
+body {
+	margin: 0;
+	padding: 0;
+	font-size: 18px;
+	line-height: 26px;
+	font-family: sans-serif, Arial;
+	/*font-family: 'Bebas Neue', cursive;
+	font-family: 'Inconsolata', monospace;
+	font-family: 'Permanent Marker', cursive;
+	font-family: 'Playfair Display', serif;*/
+}
+
+a{
+	text-decoration: none;
+}
+
+div.content {
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+div.content-wrapper {
+	margin: auto; /* to center the element*/
+	padding-top: 40px ;
+	padding-bottom: 20px;
+	width: 1000px;
+	max-width: 100%;
+	border-bottom: 2px dotted black ; /*000000*/
+
+}
+
+
+/* Banner */
+
+
+/* Banner Text */
+/*div.top h1 {
+	width: 100%;
+	height: 280px;
+	line-height: 280px;
+	text-align: center;
+	letter-spacing: 5px;
+	font-size: 80px;
+	font-weight: normal;
+	color: white;
+	margin: 0;
+	font-family: 'Bebas Neue', cursive;
+}*/
+
+/* Menu */
+div.menu {
+	width: 100%;
+	background: #0e2c40;
+	position: relative;
+	top: -10px;
+}
+div.menu ul {
+	width: 100%;
+	margin:0px 20px;
+	position: relative;
+	list-style: none;
+	size: 10px;
+	padding: 0;
+}
+div.menu ul li {
+	display: inline-block;
+}
+div.menu ul li a {
+	display: inline-block;
+	padding: 15px 30px 15px 30px;
+	color: white;
+}
+div.menu ul li a:hover, div.menu ul li{
+	color: #ffd700;
+}
+
+/*ABOUT Section*/
+
+
+div#about table {
+	width: 100%;
+	margin: auto;
+	vertical-align: top;
+}
+
+
+
+div#about img {
+	width: 300px;
+	margin: 10px;
+	
+
+}
+
+/*Services Section*/
+
+
+div#services table {
+	width: 100%;
+	margin: auto;
+	vertical-align: top;
+	border-collapse: collapse;
+}
+
+div#services table td, div#services table th {
+	vertical-align: top;
+	text-align: left;
+	padding: 5px 10px;
+	
+}
+
+div#services table tr:nth-child(even) {
+	background-color: powderblue;
+	background: linear-gradient(skyblue, aliceblue);
+}
+
+/*CONTACT Section*/
+
+
+
+
+/* Footer */
+
+div.bottom {
+	background: #0e2c40;
+	
+}
+div.bottom .copyright {
+	margin: auto;
+	width: 1000px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	max-width: 100%;
+	
+}
+
+div.bottom .copyright p {
+	text-align: center;
+	color: white;
+}
