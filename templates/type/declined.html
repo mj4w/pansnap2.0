@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html>
+	{% load crispy_forms_tags %}
+	<head>
+		{% load static %}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Pansnap Studio</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+		<link rel="icon" href="/static/yellow-cam.png" type="image/x-icon">
+		<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+		<!-- Default theme -->
+		<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css"/>
+
+	</head>
+
+	<style>
+		/* Defaults & resets */
+		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+		@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Rubik&display=swap');
+		body {
+		
+			margin: 0;
+			padding: 0;
+			font-size: 18px;
+			line-height: 26px;
+			font-family: 'Montserrat', sans-serif;
+			background: url(/static/images/portfolio_bg.png);
+			color:#EDE9E8;
+		}
+		html,body {
+			scroll-behavior: smooth;
+		}
+	
+				/* scrollbarrr*/
+				/* width */
+		::-webkit-scrollbar {
+		width: 20px;
+		}
+
+		/* Track */
+		::-webkit-scrollbar-track {
+		box-shadow: inset 0 0 5px grey; 
+		}
+		
+		/* Handle */
+		::-webkit-scrollbar-thumb {
+		background:#38b6ff; 
+		}
+
+		/* Handle on hover */
+		::-webkit-scrollbar-thumb:hover {
+		background:#00bcd4; 
+		}
+
+		
+		h3{
+			font-family: 'Rubik', sans-serif;
+		}
+		h2{
+			color:#FFDF00;
+			font-family: 'Rubik', sans-serif;
+		}
+		a{
+			text-decoration: none;
+		}
+		div.content {
+			padding-top:0 ;
+			padding-bottom: 0;
+			padding-right: 0px;
+			padding-left: 0px;
+		}
+
+		div.content-wrapper {
+			margin: auto; /* to center the element*/
+			padding-top: 70px ;
+			padding-bottom: 20px;
+			width: 1000px;
+			max-width: 100%;
+			border-bottom: hidden;
+		}
+		
+		div.content-wrapper p {
+			text-align:  justify;
+		}
+
+
+		/* Banner */
+
+
+
+		/* Menu */
+		div.menu {
+			width: 100%;
+			background: #0e2c40;
+			position: relative;
+			top: -10px;
+		}
+		div.menu ul {
+			width: 100%;
+			margin:0px 0px;
+			position: relative;
+			list-style: none;
+			size: 10px;
+			padding: 0;
+		}
+		div.menu ul li {
+			display: inline-block;
+		}
+
+		div.menu ul li a {
+			display: inline-block;
+			padding: 15px 30px 15px 30px;
+			color: white;
+		}
+
+		div.menu ul li a:hover, div.menu ul li{
+			color: #ffd700;
+		}
+
+		.login_container{
+			margin-top: 150px;
+			margin-left: 50px;
+			position: relative;
+			width: 100%;
+			height: 100vh;
+			display: flex;
+
+		}
+
+		section .login_img {
+			position: relative;
+			width: 50%;
+			height: 100%;
+		}		
+		section .login_img:after {
+			content: '';
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 500px;
+			height: 600px;
+			opacity: 50%;
+			background: rgb(0,49,74);
+			background: linear-gradient(0deg, rgba(0,49,74,1) 0%, rgba(0,105,133,1) 48%, rgba(0,165,204,1) 100%);
+		}
+		section .login_img img{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 500px;
+			height: 600px;
+			object-fit: cover;
+		}
+
+		section .login_content {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 70%;
+			height: 100%;
+			margin-top: -50px;
+		}
+
+		section .login_content .loginform {
+			width: 60%;
+		}
+
+		section .login_content .loginform h2 {
+			color: #006eff;
+			text-transform: uppercase;
+			font-weight: 600px;
+			font-size: 1.5em;
+			margin-bottom: 20px;
+			display: inline-block;
+			letter-spacing: 1px;
+		}
+
+		section .login_content .loginform .login_input {
+			margin-bottom: 5px;
+		}
+
+		section .login_content .loginform .login_input p {
+			width: 100%;
+			font-size: 16px;
+			color:#EDE9E8;
+		}
+
+		section .login_content .loginform .login_input p a {
+			color: #004aad;
+			text-decoration: underline;
+		}
+
+		section .login_content .loginform .login_input span {
+
+			font-size: 16px;
+			margin-bottom: 5px;
+			display: inline-block;
+			color:#EDE9E8;
+			font-weight: 300;
+			font-size: 16px;
+			letter-spacing: 1px;
+		}
+
+		section .login_content .loginform .login_input input {
+			width: 100%;
+			padding: 10px 20px;
+			outline: none;
+			font-weight: 400;
+			border: 1px solid #38b6ff;
+			font-size: 16px;
+			letter-spacing: 1px;
+			color:#EDE9E8;
+			background: transparent;
+			border-radius: 30px;
+		}
+
+		section .login_content .loginform .login_input input[type="submit"]{
+			width: 50%;
+			background: #006eff; 
+			color:#EDE9E8;
+
+			outline: none;
+			border: none;
+			font-weight: 500;
+			cursor: pointer;
+		}
+
+		section .login_content .loginform .login_input input[type="submit"]:hover {
+			background: #004aad;
+	
+		}
+
+		section .remember {
+			margin-bottom: 10px;
+			color: #8393a3;
+			font-weight: 400;
+			font-size: 14px;
+		}
+
+		@media (max-width:768px) {
+			section .login_img {
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+			}
+
+			section .login_content {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+				height: 100%;
+				z-index: 1;
+			}
+			
+			section .login_content .loginform {
+				width: 100%;
+				opacity: 70%;
+				margin: 50px;
+			}
+
+			section .login_content .loginform h3 {
+					text-align: center;
+					margin: 30px 0 10px;
+					font-weight: 500;
+			}
+		}
+	
+		/* Footer */
+
+		div.bottom {
+			background: #0e2c40;
+			
+		}
+		div.bottom .copyright {
+			margin: 0 auto;
+			width: 100%;
+			padding-top: 20px;
+			padding-bottom: 20px;
+			
+		}
+
+		div.bottom .copyright p {
+			text-align: center;
+			color: white;
+			margin-top: 20px;
+		}
+		/* navbar start */
+		nav {
+		position: fixed;
+		z-index: 2;
+		left: 0;
+		right: 0;
+		top: 0;
+		height: 70px;
+		padding: 0 1.5em;
+		background-color: #0e2c40;
+		font-family: 'Montserrat', sans-serif;
+		}
+		nav .logo {
+			font-size: 1.25em;
+			line-height: 70px;
+		}
+		nav .nav-menu {
+			position: absolute;
+			right: 1.5em;
+			top: 0;
+			padding: 0;
+			margin: 0;
+			list-style: none;
+		}
+		nav .nav-item {
+			display: inline-block;
+		}
+		nav .nav-item-profile {
+			display: inline-block;
+		}
+		nav .nav-item-profile > a {
+			display: inline-block;
+			padding: 0 1.5em;
+			line-height: 70px;
+			color: #EDE9E8;
+			text-decoration: none;
+		}
+		nav .nav-item > a {
+			display: inline-block;
+			padding: 0 1.5em;
+			line-height: 70px;
+			color: #EDE9E8;
+			text-decoration: none;
+		}
+		nav .nav-item a:hover{
+			color:#FFDF00;
+		}
+		nav .nav-item-profile a:active{
+			color:#FFDF00;
+		}
+		nav .dropdown {
+			position: relative;
+		}
+		nav .dropdown-profile {
+			position: relative;
+		}
+		nav .dropdown-profile a::after {
+			content: '';
+			display: inline-block;
+			margin-left: .5em;
+			vertical-align: middle;
+			border-top: .3em solid#EDE9E8;
+			border-right: .3em solid transparent;
+			border-left: .3em solid transparent;
+		}
+		nav .dropdown a::after {
+			content: '';
+			display: inline-block;
+			margin-left: .5em;
+			vertical-align: middle;
+			border-top: .3em solid#EDE9E8;
+			border-right: .3em solid transparent;
+			border-left: .3em solid transparent;
+		}
+		nav .dropdown.show a::after {
+			display: none;
+		}
+		nav .dropdown-profile.show a::after {
+			display: none;
+		}
+		nav .dropdown-menu {
+		
+			display: none;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 100%;
+			padding: .5em 0;
+			margin-top: -.5em;
+			border: 1px solid rgba(0,0,0,.3);
+			border-radius: .5em;
+			background-color: #EDE9E8;
+		}
+		nav .dropdown-menu-profile {
+		width: 120px;
+		display: none;
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 100%;
+		padding: .5em 0;
+		margin-top: -.4em;
+		border: 1px solid rgba(0,0,0,.3);
+		border-radius: .5em;
+		background-color: #EDE9E8;
+		}
+		nav .dropdown.show .dropdown-menu {
+			background-color:#0e2c40;
+			display: block;
+		}
+		nav .dropdown-profile.show .dropdown-menu-profile {
+			background-color:#0e2c40;
+			display: block;
+		}
+		nav .dropdown-item:hover{
+			background-color:#0e2c40;
+			color: #EDE9E8;
+		}
+		nav .dropdown-item-profile:hover{
+			background-color:#0e2c40;
+			color: #FFDF00;
+		}
+		nav .dropdown-item {
+			display: block;
+			padding: 0 1.5em;
+			font-size: .875em;
+
+			color:#EDE9E8;
+			line-height: 3;
+			text-decoration: none;
+		}
+		nav .dropdown-item-profile {
+			display: block;
+			padding: 0 1.5em;
+			font-size: 14px;
+
+			color:#EDE9E8;
+			line-height: 3;
+			text-decoration: none;
+		}
+		nav .btn-hamburger {
+			display: none;
+			position: absolute;
+			right: 1.5em;
+			top: 50%;
+			background-color: transparent;
+			border: 0;
+			cursor: pointer;
+			outline: none;
+			transform: translateY(-50%);
+		}
+		nav .btn-hamburger span {
+			display: block;
+			width: 30px;
+			height: 4px;
+			background-color:#EDE9E8;
+			margin: 6px;
+			border-radius: 2px;
+			transition: .3s ease-in-out;
+		}
+		nav .btn-hamburger span:nth-child(4),
+		nav .btn-hamburger span:nth-child(5) {
+			position: absolute;
+			top: 10px;
+			opacity: .5;
+		}
+		nav .btn-hamburger span:nth-child(4) {
+			transform: rotate(45deg) scale(0);
+		}
+		nav .btn-hamburger span:nth-child(5) {
+			transform: rotate(-45deg) scale(0);
+		}
+		nav.opened .btn-hamburger span:nth-child(4) {
+			opacity: 1;
+			transform: rotate(45deg) scale(1);
+		}
+		nav.opened .btn-hamburger span:nth-child(5) {
+			opacity: 1;
+			transform: rotate(-45deg) scale(1);
+		}
+		nav.opened .btn-hamburger span:nth-child(1),
+		nav.opened .btn-hamburger span:nth-child(2),
+		nav.opened .btn-hamburger span:nth-child(3) {
+			opacity: 0;
+		}
+		@media screen and (max-width: 768px) {
+			nav .nav-menu {
+				position: fixed;
+				left: 0;
+				right: 0;
+				top: 70px;
+				bottom: 100%;
+				display: flex;
+				flex-direction: column;
+				justify-content: start;
+				background-color:#0e2c40;
+				transition: bottom .5s ease-in-out;
+				overflow: hidden;
+			}
+			nav.opened .nav-menu {
+				bottom: 0;
+			}
+			nav .nav-item > a {
+				display: block;
+			}
+			nav .dropdown-menu {
+				position: relative;
+				top: 0;
+				margin: 0 1.5em;
+			}
+			nav .btn-hamburger {
+				display: block;
+			}
+		}
+
+
+		.container_home{
+			position: relative;
+			margin-top: 50px;
+			padding: 5%;
+			min-height: 100%;
+		}
+
+@media only screen and (max-width: 600px) {
+	html,body{
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		width: 100%;
+		overflow-x: hidden;
+	}
+	.content-wrapper{
+		padding: 5px;
+
+	}
+	.content-home{
+		padding: 20px;
+	}
+
+}
+/*contact us */
+.contact-home{
+		position: relative;
+		min-height: 100vh;
+		padding: 50px 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+
+
+	}
+.contact{
+		position: relative;
+		min-height: 100vh;
+		padding: 50px 100px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		background:url(/static/images/cityscape.jpg);
+		background-size: cover;
+
+	}
+	.contact .content-contact{
+		max-width: 800px;
+		text-align: center;
+
+	}
+	.content-contact h2{
+		font-weight: 500;
+		color: #ffd700;
+	}
+	.content-contact p{
+		font-size: 20px;
+		font-weight: 500;
+		color:white;
+
+
+	}
+	.container{
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		margin-top: 30px;
+	}
+	.contactInfo{
+		width: 50%;
+		display: flex;
+		flex-direction: column;
+	}
+	.boxes{
+		position: relative;
+		padding: 20px 0;
+		display: flex;
+	}
+	.icon{
+		min-width: 60px;
+		height: 60px;
+		background: #fff;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-radius: 50%;
+		font-size: 22px;
+		color: blue;
+	}
+	.text{
+		display: flex;
+		margin-left: 20px;
+		font-size: 16px;
+		color: #ffff;
+		flex-direction: column;
+		font-weight: 300;
+	}
+	.text h3{
+		font-weight: 500;
+		color: blue;
+
+	}
+	.contactForm{
+		border-radius: 30px;
+		width: 40%;
+		padding: 40px;
+		background:#ffff;
+
+	}
+	.contactForm h2{
+		font-size: 30px;
+		color: #333;
+		font-weight: 500;
+
+	}
+	.inputBox{
+		position: relative;
+		width: 100%;
+		margin-top: 10px;
+	}
+	.inputBox input, .inputBox textarea{
+		width: 100%;
+		padding: 5px 0;
+		font-size: 16px;
+		margin: 10px 0;
+		border: none;
+		border-bottom: 2px solid #333;
+		outline:none;
+		resize: none;
+	}
+	.inputBox span {
+		position: absolute;
+		left: 0;
+		padding: 5px 0;
+		font-size: 16px;
+		margin: 10px 0;
+		pointer-events: none;
+		transition: 0.5s;
+		color: #666;
+	}
+	.inputBox input:focus ~ span,
+	.inputBox input:valid ~ span,
+	.inputBox textarea:focus ~ span,
+	.inputBox textarea:valid ~ span
+	{
+		color: blue;
+		font-size: 12px;
+		transform: translateY(-20px);
+	}
+	.contactForm .inputBox input[type="submit"]{
+		width: 150px;
+		background: #00bcd4;
+		color: #fff;
+		border: none;
+		cursor: pointer;
+		padding: 10px;
+		font-size: 20px;
+
+		margin-left: 100px;
+
+	}
+	@media (max-width:991px){
+		.contact{
+			padding: 50px;
+			background-repeat: no-repeat;
+			background-size: cover;
+			background-position: center;
+		}
+		.contact-home{
+			padding: 50px;
+		}
+		.container{
+			flex-direction: column;
+
+		}
+		.container .contactInfo{
+			margin-left: -110px;
+			margin-bottom: 40px;
+		}
+		.container .contactInfo,.contactForm{
+			width: 100%;
+			min-width: 100%;
+		}
+		.contactForm .inputBox input[type="submit"]{
+			width: 100px;
+			margin-left: -2px;
+		}
+	}
+	.go-top {
+	position:fixed;
+	bottom: 20%;
+	right: 5%;
+	padding:20px;
+	display:none;
+	cursor: pointer;
+	-webkit-font-smoothing: antialiased;
+	z-index: 1;
+	top: 90%;
+	}
+	.go-top:after {
+	font-family: FontAwesome;
+	content: "\f106";
+	background-color:#ffd700;
+	padding: 10px 15px;
+	color:#0e2c40;
+	position: absolute; 
+	bottom:10px;
+	font-size: 28px;
+	border-radius: 50%;
+	}
+    .active {
+        color: violet;
+    }
+
+
+
+
+
+	</style>
+<body>
+	
+	<div class="go-top">
+		
+	</div>
+    
+    <script>
+        $(function(){
+
+        //Scroll event
+        $(window).scroll(function(){
+        var scrolled = $(window).scrollTop();
+        if (scrolled > 200) $('.go-top').fadeIn('slow');
+        if (scrolled < 200) $('.go-top').fadeOut('slow');
+        });
+
+        //Click event
+        $('.go-top').click(function () {
+        $("html, body").animate({ scrollTop: "0" },  500);
+        });
+
+        });
+
+    </script>
+		{% if request.user.username == "admin"%}
+		<style>
+			.containerist h1 {
+				text-align: center;
+				font-size: 2.4em;
+				color: #f2f2f2;
+				}
+				.containerist {
+				display: block;
+				text-align: center;
+				}
+			.rwd-table {
+			margin: auto;
+			min-width: 300px;
+			max-width: 100%;
+			border-collapse: collapse;
+			}
+
+			.rwd-table tr:first-child {
+			border-top: none;
+			background:#0e2c40;
+			color: #fff;
+			}
+
+			.rwd-table tr {
+			border-top: 1px solid #ddd;
+			border-bottom: 1px solid #ddd;
+			background-color: #f5f9fc;
+			}
+
+			/* .rwd-table tr:nth-child(odd):not(:first-child) {
+			background-color;
+			} */
+
+			.rwd-table th {
+			display: none;
+			}
+
+			.rwd-table td {
+			display: block;
+			}
+
+			.rwd-table td:first-child {
+			margin-top: .5em;
+			}
+
+			.rwd-table td:last-child {
+			margin-bottom: .5em;
+			}
+
+			.rwd-table td:before {
+			content: attr(data-th) ": ";
+			font-weight: bold;
+			width: 120px;
+			display: inline-block;
+			color: #000;
+			}
+
+			.rwd-table th,
+			.rwd-table td {
+			text-align: left;
+			}
+
+			.rwd-table {
+			color: #333;
+			border-radius: .4em;
+			overflow: hidden;
+			}
+
+			.rwd-table tr {
+			border-color: #bfbfbf;
+			}
+
+			.rwd-table th,
+			.rwd-table td {
+			padding: .5em 1em;
+			}
+			@media screen and (max-width: 601px) {
+			.rwd-table tr:nth-child(2) {
+				border-top: none;
+			}
+			}
+			@media screen and (min-width: 600px) {
+			.rwd-table tr:hover:not(:first-child) {
+				background-color:#0e2c40;
+				color: white;
+			}
+			.rwd-table td:before {
+				display: none;
+			}
+			.rwd-table th,
+			.rwd-table td {
+				display: table-cell;
+				padding: .25em .5em;
+			}
+			.rwd-table th:first-child,
+			.rwd-table td:first-child {
+				padding-left: 0;
+			}
+			.rwd-table th:last-child,
+			.rwd-table td:last-child {
+				padding-right: 0;
+			}
+			.rwd-table th,
+			.rwd-table td {
+				padding: 1em !important;
+			}
+			}
+
+#custom-search-input {
+        margin:0;
+        margin-top: 10px;
+        padding: 0;
+    }
+ 
+    #custom-search-input .search-query {
+        padding-right: 3px;
+        padding-right: 4px \9;
+        padding-left: 3px;
+        padding-left: 4px \9;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+ 
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+    }
+ 
+    #custom-search-input button {
+        border: 0;
+        background: none;
+        /** belows styles are working good */
+        padding: 2px 5px;
+        margin-top: 2px;
+        position: relative;
+        left: -28px;
+        /* IE7-8 doesn't have border-radius, so don't indent the padding */
+        margin-bottom: 0;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        color:#D9230F;
+    }
+ 
+    .search-query:focus + button {
+        z-index: 3;   
+    }
+		</style>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">		
+<div class="containerist">
+			
+            <h1 style="color: #ffd700;">Admin Area</h1>
+            <center><a href="{% url 'home' %}">Back to homepage</a></center>
+			<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+			<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+			<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+			<!------ Include the above in your HEAD tag ---------->
+			
+			<div class="container">
+				
+				<div class="row">
+				<form method="GET" action="{% url 'search' %}">
+					{% csrf_token %}
+				
+					<div id="custom-search-input">
+						<div class="input-group col-md-12">
+							<input type="text" class="search-query form-control" name="searched" placeholder="Search User" />
+							<span class="input-group-btn">
+								<button class="btn btn-danger" type="submit">
+									<span class=" glyphicon glyphicon-search"></span>
+								</button>
+								
+							</span>
+						</div>
+					</div>
+				</form>
+			
+
+				</div>
+                <div class="row">
+                    <form method="GET" action="{% url 'search-reserve' %}">
+                        {% csrf_token %}
+                    
+                        <div id="custom-search-input">
+                            <div class="input-group col-md-12">
+                                <input type="text" class="search-query form-control" name="search_reserve" placeholder="Search Reservation" />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-danger" type="submit">
+                                        <span class=" glyphicon glyphicon-search"></span>
+                                    </button>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                
+    
+                    </div>
+					<form method="GET">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" style="background-color:white; color:#0e2c40; margin-top: 10px;" type="button" data-toggle="dropdown">Type
+                            </button>
+                            <ul class="dropdown-menu">
+                              <li><a href="{% url 'indoor' %}">Indoor Shoot</a></li>
+                              <li><a href="{% url 'outdoor' %}">Outdoor Shoot</a></li>
+                             
+                            </ul>
+                          </div>
+                    </form>
+                    <div class="dropdown">
+                        <button class="btn btn-primary dropdown-toggle" style="background-color:white; color:#0e2c40; margin-top: 10px; margin-left: 10px;" type="button" data-toggle="dropdown" >
+                            Status
+                        </button>
+						<ul class="dropdown-menu">
+							<li><a href="{% url 'pending' %}">Pending</a></li>
+							<li><a href="{% url 'approve' %}">Approved</a></li>
+							<li><a href="{% url 'reserved' %}">Reserved</a></li>
+							<li><a href="{% url 'complete' %}">Completed</a></li>
+							<li><a href="{% url 'declined' %}">Declined</a></li>
+						   
+						  </ul>
+                      </div>
+	
+			</div>
+			<br>
+			<br>
+
+			<div class="containerist">
+
+     
+
+
+				<h1>Client Reservation Records</h1>
+				  <table class="rwd-table">
+		
+					<tbody>
+
+					  <tr>
+						<th>Username</th>
+						<th>Full Name</th>
+						<th>Email Address</th>
+						<th>Contact Number</th>
+						<th>FB URL</th>
+						<th>Street Number</th>
+						<th>Baranggay</th>
+						<th>Zip Code</th>
+						<th>Municipality</th>
+						<th>Province</th>
+				
+					   
+						
+	
+					  </tr>
+	
+
+					  {% for reserves in reserve %}
+                      {% if reserves.declined %}
+					  <tr>
+						<td>{{reserves.user}}</td>
+						<td data-th="Full Name" >{{reserves.first_name_reserve}} {{reserves.last_name_reserve}}</td>
+						<td data-th="Email">{{reserves.email_address}}</td>
+						<td data-th="Contact Number">{{reserves.contact_number_reserve}}</td>
+						<td data-th="FB"><a href="{{reserves.facebook_url}}"><i class='bx bxl-facebook-circle'></i></a></td>
+						<td data-th="Street">{{reserves.street_number}}</td>
+						<td data-th="Baranggay">{{reserves.baranggay}}</td>
+						<td data-th="Zip Code">{{reserves.zip_code}}</td>
+						<td data-th="Municipality">{{reserves.municipality}}</td>
+						<td data-th="Province">{{reserves.province}}</td>
+			   
+				
+						
+								
+						
+						
+					  </tr>
+                      {% endif %}
+						{% endfor %}		
+								
+						
+					</tbody>
+				  </table>
+				</div>
+				<br>
+				<br>
+				<div class="containerist">
+					<h1></h1>
+					  <table class="rwd-table">
+						<tbody>
+						  <tr>
+							<th>Username</th>
+							<th >Date/Time</th>
+							<th >Type</th>
+							<th >Event</th>
+							<th >Package</th>
+							<th >Picture/Flashdrive/Frame</th>
+							<th>Comment</th>
+							<th>Account Verification</th>
+							<th>Status</th>
+							<th>Edit</th>
+							<th>Delete</th>
+				
+					
+							
+		
+						  </tr>
+						 
+						  <tr>
+				
+							{% for reserves in reserve %}
+                            {% if reserves.declined %}
+							<tr>
+							<td>{{reserves.user}}</td>
+							  {% if reserves.indoor_date %}
+								  {% if reserves.indoor_radio1%}
+								  <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio1}}</td>
+								  {% elif reserves.indoor_radio2%}
+								  <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio2}}</td>
+								  {% elif reserves.indoor_radio3%}
+								  <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio3}}</td>
+								  {% elif reserves.indoor_radio4%}
+								  <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio4}}</td>
+								  {% elif reserves.indoor_radio5%}
+								  <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio5}}</td>
+								  {% else %}
+								  <td data-th="Full Name">Need to Complete</td>
+								  {% endif %}
+								  {% elif reserves.outdoor_date %}
+								  <td>{{reserves.outdoor_date}} / start {{reserves.outdoor_time}}  end {{reserves.outdoor_end}}</td>
+							  {% else %}
+							  <td>Empty</td>
+							  {% endif %}
+								
+							  {% if outdoor_shoot %}
+							  <td data-th="Full Name">{{reserves.outdoor_shoot}}</td>
+							  {% else  %}
+							  <td data-th="Full Name">{{reserves.indoor_shoot}}</td>
+							  {% endif%}
+							  {% if reserves.wedding_pre_nuptial  %}
+							  <td data-th="Full Name">{{reserves.wedding_pre_nuptial}}</td>
+							  {% elif reserves.pre_debut %}
+							  <td data-th="Full Name">{{reserves.pre_debut}}</td>
+							  {% elif reserves.toddler %}
+							  <td data-th="Full Name">{{reserves.toddler}}</td>
+							  {% elif reserves.pre_birthday %}
+							  <td data-th="Full Name">{{reserves.pre_birthday}}</td>
+							  {% elif reserves.maternity %}
+							  <td data-th="Full Name">{{reserves.maternity}}</td>
+							  {% elif reserves.family_portrait %}
+							  <td data-th="Full Name">{{reserves.family_portrait}}</td>
+							  {% elif reserves.graduation_photo%}
+							  <td data-th="Full Name">{{reserves.graduation_photo}}</td>
+							  {% elif reserves.barkada_shoot%}
+							  <td data-th="Full Name">{{reserves.barkada_shoot}}</td>
+							  <!--Outdoor-->
+							  {% elif reserves.church_wedding and reserves.wedding_event %}
+							  <td>{{reserves.church_wedding}} / {{reserves.wedding_event}} / {{reserves.wedding}}</td>
+							  {% elif reserves.civil_wedding and reserves.prenup_outdoor %}
+							  <td>{{reserves.civil_wedding}} / {{reserves.prenup_outdoor}} / {{reserves.wedding}}</td>
+							  
+							  {% elif reserves.church_wedding and reserves.prenup_outdoor %}
+							  <td>{{reserves.church_wedding}} / {{reserves.prenup_outdoor}} / {{reserves.wedding}}</td>
+							  {% elif reserves.civil_wedding and reserves.wedding_event %}
+							  <td>{{reserves.civil_wedding}} / {{reserves.wedding_event}} / {{reserves.wedding}}</td>
+							  {% elif reserves.civil_wedding and reserves.wedding_event %}
+							  <td>{{reserves.civil_wedding}} / {{reserves.wedding_event}}</td>
+							  {% elif reserves.civil_wedding and reserves.prenup_outdoor %}
+							  <td>{{reserves.civil_wedding}} / {{reserves.prenup_outdoor}}</td>
+							  
+							  {% elif reserves.civil_wedding and reserves.prenup_outdoor %}
+							  <td>{{reserves.civil_wedding}} / {{reserves.prenup_outdoor}}</td>
+							  {% elif reserves.civil_wedding and reserves.wedding_event %}
+							  <td>{{reserves.civil_wedding}} / {{reserves.wedding_event}} </td>
+							  {% elif reserves.pre_debut_outdoor %}
+	  
+							  <td>{{reserves.pre_debut_outdoor}} / {{reserves.debut}}</td>
+							  {% elif reserves.debut_outdoor %}
+	  
+							  <td>{{reserves.debut_outdoor}} / {{reserves.debut}}</td>
+							  {% elif reserves.baptismal %}
+							  <td>{{reserves.baptismal}}</td>
+							  {% elif reserves.birthday%}
+							  <td>{{reserves.birthday}}</td>
+							  {% else %}
+							  <td>None</td>
+							  {% endif %}
+							 
+							  {% if reserves.wedding_package1  %}
+							  <td data-th="Full Name">{{reserves.wedding_package1}}</td>
+							  {% elif reserves.wedding_package2 %}
+							  <td data-th="Full Name">{{reserves.wedding_package2}}</td>
+							  {% elif reserves.wedding_package3 %}
+							  <td data-th="Full Name">{{reserves.wedding_package3}}</td>
+				  
+				  
+				  
+							  
+							  {% elif reserves.debut_package1 %}
+							  <td data-th="Full Name">{{reserves.debut_package1}}</td>
+							  {% elif reserves.debut_package2 %}
+							  <td data-th="Full Name">{{reserves.debut_package2}}</td>
+							  {% elif reserves.debut_package3 %}
+							  <td data-th="Full Name">{{reserves.debut_package3}}</td>
+				  
+				  
+				  
+							  {% elif reserves.toddler_package1%}
+							  <td data-th="Full Name">{{reserves.toddler_package1}}</td>
+							  {% elif reserves.toddler_package2%}
+							  <td data-th="Full Name">{{reserves.toddler_package2}}</td>
+							  {% elif reserves.toddler_package3 %}
+							  <td data-th="Full Name">{{reserves.toddler_package3}}</td>
+				  
+							  
+							  {% elif reserves.pre_birthday_package1 %}
+							  <td data-th="Full Name">{{reserves.pre_birthday_package1}}</td>
+							  {% elif reserves.pre_birthday_package2 %}
+							  <td data-th="Full Name">{{reserves.pre_birthday_package2}}</td>
+							  {% elif reserves.pre_birthday_package3 %}
+							  <td data-th="Full Name">{{reserves.pre_birthday_package3}}</td>
+							  
+							  {% elif reserves.maternity_package1 %}
+							  <td data-th="Full Name">{{reserves.maternity_package1}}</td>
+							  {% elif reserves.maternity_package2%}
+							  <td data-th="Full Name">{{reserves.maternity_package2}}</td>
+							  {% elif reserves.maternity_package3%}
+							  <td data-th="Full Name">{{reserves.maternity_package3}}</td>
+							  
+				  
+							  {% elif reserves.family_portrait_package1 %}
+							  <td data-th="Full Name">{{reserves.family_portrait_package1}}</td>
+							  {% elif reserves.family_portrait_package2%}
+							  <td data-th="Full Name">{{reserves.family_portrait_package2}}</td>
+							  {% elif reserves.family_portrait_package3%}
+							  <td data-th="Full Name">{{reserves.family_portrait_package3}}</td>
+				  
+				  
+							  {% elif reserves.graduation_package1 %}
+							  <td data-th="Full Name">{{reserves.graduation_package1}}</td>
+							  {% elif reserves.graduation_package2 %}
+							  <td data-th="Full Name">{{reserves.graduation_package2}}</td>
+							  {% elif reserves.graduation_package3 %}
+							  <td data-th="Full Name">{{reserves.graduation_package3}}</td>
+				  
+							  {% elif reserves.barkada_package1 %}
+							  <td data-th="Full Name">{{reserves.barkada_package1}}</td>
+							  {% elif reserves.barkada_package2%}
+							  <td data-th="Full Name">{{reserves.barkada_package2}}</td>
+							  {% elif reserves.barkada_package3%}
+							  <td data-th="Full Name">{{reserves.barkada_package3}}</td>
+							          <!--Outdoor-->
+									  {% elif reserves.video_package %}
+									  <td>{{reserves.video_package}}</td>
+									  {% elif reserves.package_outdoor%}
+									  <td>{{reserves.package_outdoor}}</td>
+									  {% elif reserves.package2_outdoor%}
+									  <td>{{reserves.package2_outdoor}}</td>   
+			  
+									  {% elif reserves.video_package2 %}
+									  <td>{{reserves.video_package2}}</td>
+									  {% elif reserves.photo_video%}
+									  <td>{{reserves.photo_video}}</td>
+									  {% elif reserves.photo_video_2%}
+									  <td>{{reserves.photo_video_2}}</td>   
+			  
+									  {% elif reserves.pre_debut_outdoor1 %}
+									  <td>{{reserves.pre_debut_outdoor1}}</td>
+									  {% elif reserves.pre_debut_outdoor2%}
+									  <td>{{reserves.pre_debut_outdoor2}}</td>
+									  {% elif reserves.pre_debut_outdoor3%}
+									  <td>{{reserves.pre_debut_outdoor3}}</td>   
+									  
+									  {% elif reserves.package_debut1 %}
+									  <td>{{reserves.package_debut1}}</td>
+									  {% elif reserves.package_debut2%}
+									  <td>{{reserves.package_debut2}}</td>
+									  {% elif reserves.package_debut3%}
+									  <td>{{reserves.package_debut3}}</td>   
+								  
+									   
+									  {% elif reserves.baptismal_outdoor1 %}
+									  <td>{{reserves.baptismal_outdoor1}}</td>
+									  {% elif reserves.baptismal_outdoor2%}
+									  <td>{{reserves.baptismal_outdoor2}}</td>
+									  {% elif reserves.baptismal_outdoor3%}
+									  <td>{{reserves.baptismal_outdoor3}}</td>   
+			  
+									  {% elif reserves.birthday_outdoor1 %}
+									  <td>{{reserves.birthday_outdoor1}}</td>
+									  {% elif reserves.birthday_outdoor2%}
+									  <td>{{reserves.birthday_outdoor2}}</td>
+									  {% elif reserves.birthday_outdoor3%}
+									  <td>{{reserves.birthday_outdoor3}}</td>   
+									  {% elif reserves.v1 %}
+									  <td>{{reserves.v1}}</td>
+									  {% elif reserves.v2%}
+									  <td>{{reserves.v2}}</td>
+									  {% elif reserves.v3%}
+									  <td>{{reserves.v3}}</td>   
+			  
+									  {% elif reserves.v4 %}
+									  <td>{{reserves.v4}}</td>
+									  {% elif reserves.v5%}
+									  <td>{{reserves.v5}}</td>
+									  {% elif reserves.v6%}
+									  <td>{{reserves.v6}}</td>  
+			   
+									  {% else %}
+									  <td>None</td>
+									  
+									  
+									  {% endif %}
+							  {% if reserves.selection1  %}
+							  <td data-label="selection">{{reserves.selection1}}  / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+							  {% elif reserves.selection2  %}
+							  <td data-label="selection">{{reserves.selection2}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+							  {% elif reserves.selection3  %}
+							  <td data-label="selection">{{reserves.selection3}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+							  {% elif reserves.selection4  %}
+							  <td data-label="selection">{{reserves.selection4}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+							  {% elif reserves.selection5  %}
+							  <td data-label="selection">{{reserves.selection5}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+							  {% elif reserves.selection6  %}
+							  <td data-label="selection">{{reserves.selection6}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+							  {% elif reserves.selection7  %}
+							  <td data-label="selection">{{reserves.selection7}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+							  {% elif reserves.selection8  %}
+							  <td data-label="selection">{{reserves.selection8}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+								{% else %}
+								<td data-label="selection">No selection</td>
+							  {% endif %}
+							  {% if reserves.comment_request%}
+							  <td data-label="comment">{{reserves.comment_request}}</td>
+							  {% else %}
+							  <td data-label="comment">No comment</td>
+							  {% endif %}
+							  {% if reserves.verify_image %}
+							  <th data-label="verification"><img src="{{reserves.verify_image.url}}" width="100"></th>
+							  {% else %}
+							  <th data-label="verification">No image</th>
+							  {% endif %}
+                              {% if reserves.status  %}
+							  <td><p ><b style="color:rgb(203, 255, 16);">Approved </b><br></p></td>
+							  {% elif reserves.completed %}
+							  <td><p style="color:rgb(61, 255, 61);"><b>Completed</b></p></td>
+							  {% elif reserves.reserved %}
+							  <td><p style="color: rgb(117, 189, 247);"><b>Reserved</b></p></td>
+							  {% elif reserves.pending %}
+							  <td><p style="color:  rgb(254, 156, 36);"><b>Pending</b></p></td>
+							  {% elif reserves.declined %}
+							  <td><p style="color: red;"><b>Declined</b></p></td>
+							  
+							  {% endif %}
+							  <th><a href="{% url 'edit-admin' reserves.id %}">Edit</a></th>
+							  <th><a href="{% url 'delete-reservation-admin' reserves.id %}">Delete</a></th>
+						  </tr>
+                          {% endif %}
+						  {% endfor%}
+						 
+				 
+						
+						 
+						</tbody>
+					  </table>
+					</div>
+
+				
+
+
+
+
+		{% else %}
+	<div id="wrap">
+		<nav>
+			<div class="logo">
+				<a href="{% url 'home'%}">
+					<img src="{% static 'images/logo/pansnap_logo.png' %}" 
+					
+					style="
+					width: 300px;
+					position: absolute;
+					left: -10px;
+					top: -50px;
+					padding: 0;
+					margin: 0;
+					">
+				</a>
+			</div>
+			<button type="button" class="btn-hamburger" data-action="nav-toggle">
+				<span> </span>
+				<span></span>
+				<span></span>
+				<span></span>
+				<span></span>
+			</button>
+            {% load active_link_tags %}
+			<ul class="nav-menu">
+             
+				<li class="nav-item {% active_link 'home' 'active'%}"><a  href="{% url 'home' %}" >Home</a></li>
+                {% url 'about' as about %}
+                <li class="nav-item"><a href="{{about}}" class="{% if request.path == about %} active {% endif %}">About</a></li>
+				<li class="nav-item"><a href="{% url 'services'%}"class="{% if navbar == 'services'%} active {% endif %}">Services</a></li>
+				<li class="nav-item"><a href="{% url 'hire-us'%}"class="{% if navbar == 'hire-us'%} active {% endif %}">Hire-us</a></li>
+				<li class="nav-item dropdown">
+					<a href="#" data-action="dropdown-toggle">Portfolio</a>
+					<div class="dropdown-menu">
+						<a class="dropdown-item" href="{% url 'portfolio'%}"class="{% if navbar == 'portfolio'%} active {% endif %}">Outdoor Photos</a>
+						<a class="dropdown-item" href="{% url 'studio-shoot'%}"class="{% if navbar == 'studio-shoot'%} active {% endif %}">Indoor Photos</a>
+						<a class="dropdown-item" href="{% url 'films' %}"class="{% if navbar == 'films'%} active {% endif %}">Films</a>
+					</div>
+				</li>
+	
+				<li class="nav-item"><a href="{% url 'contact'%}"class="{% if navbar == 'contact'%} active {% endif %}">Contact</a></li>
+				{% if user.is_authenticated%}
+				<li class="nav-item-profile dropdown-profile">
+					
+					{% if request.user.avatar %}
+					<a href="#" data-action="dropdown-toggle-profile"><img src="{{request.user.avatar.url}}" width="30" height="30" style="margin-left: 20px; border-radius: 50%;"></a>
+					{% else %}
+					<a href="#" data-action="dropdown-toggle-profile"><img src="/static/images/logo/user_logo.png" width="30" height="30" style="margin-left: 20px; border-radius: 50%;"></a>
+					{% endif %}
+												
+					
+					<div class="dropdown-menu-profile">
+						<a class="dropdown-item-profile" href="{% url 'profile' %}">My Profile</a>
+						<a class="dropdown-item-profile" href="{% url 'logout'%}">Log out</a>
+					</div>
+			
+					
+				</li>
+				{% endif %}
+			
+			</ul>
+		</nav>
+        {% block content %}
+
+        {% endblock content %}
+
+
+	</body>
+
+	<script>
+		let dropdownProfile = document.querySelector("[data-action='dropdown-toggle-profile']");
+		let dropdown_profile = document.querySelector('.dropdown-profile');
+			
+		dropdownProfile.addEventListener('click', () => {
+				if (dropdown_profile.classList.contains('show')) {
+					dropdown_profile.classList.remove('show'); 
+	
+				}else{
+					dropdown_profile.classList.add('show');
+				}
+	
+			})
+	</script>
+	
+	<script>
+			let nav = document.querySelector('nav');
+			let dropdown = nav.querySelector('.dropdown');
+			let dropdownToggle = nav.querySelector("[data-action='dropdown-toggle']");
+			let navToggle = nav.querySelector("[data-action='nav-toggle']");
+
+			dropdownToggle.addEventListener('click', () => {
+				if (dropdown.classList.contains('show')) {
+					dropdown.classList.remove('show');
+				} else {
+					dropdown.classList.add('show');
+				}
+			})
+
+	
+			navToggle.addEventListener('click', () => {
+				if (nav.classList.contains('opened')) {
+					nav.classList.remove('opened');
+				} else {
+					nav.classList.add('opened');
+				}
+			})
+		</script>
+
+
+
+
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+
+// You can also pass an optional settings object
+// below listed default settings
+  AOS.init({
+    // Global settings:
+    disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+    startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+    initClassName: 'aos-init', // class applied after initialization
+    animatedClassName: 'aos-animate', // class applied on animation
+    useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+    disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+    debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+    throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+    
+
+    // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+    offset: 120, // offset (in px) from the original trigger point
+    delay: 0, // values from 0 to 3000, with step 50ms
+    duration: 1000, // values from 0 to 3000, with step 50ms
+    easing: 'ease', // default easing for AOS animations
+    once: false, // whether animation should happen only once - while scrolling down
+    mirror: false, // whether elements should animate out while scrolling past them
+    anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+  });
+</script>
+
+<!-- JavaScript  Alertify-->
+<script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
+<script>
+	{% for msg in messages %}
+		alertify.set('notifier','position', 'top-right');
+		{% if msg.tags == "success"%}
+			alertify.success('{{msg}}')
+		{% elif msg.tags == "warning" %}
+			alertify.error('{{msg}}')
+		{% elif msg.tags == "error" %}
+			alertify.error('{{msg}}')
+		{% elif msg.tags == "info" %}
+			alertify.notify('{{msg}}')
+		{% endif %}
+		
+	
+
+   	{% endfor %}
+</script>
+<div class="bottom">
+	<div class ="copyright">
+		<p>Copyright &copy; 2022 Pansnap Studio</p>
+	</div>
+</div>
+</html>
+{% endif %}

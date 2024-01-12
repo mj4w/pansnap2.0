@@ -1,0 +1,188 @@
+<!-- CSS only -->
+{% extends 'base_page/base.html'%}
+{% block content %}
+<link rel="stylesheet" 
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" integrity="sha384-QYIZto+st3yW+o8+5OHfT6S482Zsvz2WfOzpFSXMF9zqeLcFV0/wlZpMtyFcZALm" crossorigin="anonymous">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<style>
+    @charset "UTF-8";
+    .bottom{
+        display: none;
+    }   
+
+.row {
+    font-family: 'Montserrat', sans-serif;
+    margin: auto;
+    padding: 30px;
+    width: 80%;
+    display: flex;
+    flex-flow: column;
+}
+.row .card {
+  width: 100%;
+  margin-bottom: 5px;
+  display: block;
+  transition: opacity 0.3s;
+}
+
+.card-body {
+  padding: 0.5rem;
+}
+.card-body table {
+  width: 100%;
+}
+.card-body table tr {
+  display: flex;
+}
+.card-body table tr td a.btn {
+  font-size: 0.8rem;
+  padding: 3px;
+}
+.card-body table tr td:nth-child(2) {
+  text-align: right;
+  justify-content: space-around;
+}
+
+.card-title:before {
+  display: inline-block;
+
+  font-weight: 900;
+  font-size: 1.1rem;
+  text-align: center;
+  border: 2px solid grey;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  padding-bottom: 3px;
+  margin-right: 10px;
+}
+
+
+
+.card.display-none {
+  display: none;
+  transition: opacity 2s;
+}
+</style>
+<div class="row notification-container">
+    <h2 class="text-center" style="margin-top: 70px;">My Notifications</h2>
+    <p class="dismiss text-right"><a id="dismiss-all" href="#"></a></p>
+    {% for reserves in reserve%}
+    {% if reserves.status %}
+    <div class="card notification-card notification-invitation">
+      <div class="card-body">
+        <table>
+          <tr>
+            <td style="width:100%; white-space: nowrap;">
+              <div  ><i class="fa-solid fa-circle-check" style="color:rgb(203, 255, 16);"></i> Hi! <b>{{request.user.first_name}},</b> your reservation request on 
+                {% if reserves.indoor_date %}
+                {% if reserves.indoor_radio1%}
+                {{reserves.indoor_date}}
+                {% elif reserves.indoor_radio2%}
+                {{reserves.indoor_date}}
+                {% elif reserves.indoor_radio3%}
+                {{reserves.indoor_date}} 
+                {% elif reserves.indoor_radio4%}
+                {{reserves.indoor_date}}
+                {% elif reserves.indoor_radio5%}
+                {{reserves.indoor_date}} 
+                {% endif %}        
+                {% elif reserves.outdoor_date %}
+                {{reserves.outdoor_date}}
+                {% else %}
+                Empty
+                {% endif %}
+                {% if reserves.wedding_pre_nuptial  %}
+                -{{reserves.wedding_pre_nuptial}}
+                {% elif reserves.pre_debut %}
+                -{{reserves.pre_debut}}
+                {% elif reserves.toddler %}
+                -{{reserves.toddler}}
+                {% elif reserves.pre_birthday %}
+                -{{reserves.pre_birthday}}
+                {% elif reserves.maternity %}
+                -{{reserves.maternity}}
+                {% elif reserves.family_portrait %}
+                -{{reserves.family_portrait}}
+                {% elif reserves.graduation_photo%}
+                -{{reserves.graduation_photo}}
+                {% elif reserves.barkada_shoot%}
+                -{{reserves.barkada_shoot}}
+                <!--Outdoor-->
+                {% elif reserves.church_wedding and reserves.wedding_event %}
+                -{{reserves.wedding_event}}
+                {% elif reserves.civil_wedding and reserves.prenup_outdoor %}
+                -{{reserves.prenup_outdoor}}
+                
+                {% elif reserves.church_wedding and reserves.prenup_outdoor %}
+                -{{reserves.prenup_outdoor}}
+                {% elif reserves.civil_wedding and reserves.wedding_event %}
+                -{{reserves.wedding_event}}
+                {% elif reserves.pre_debut_outdoor %}
+
+                -{{reserves.pre_debut_outdoor}} / {{reserves.debut}}
+                {% elif reserves.debut_outdoor %}
+
+                -{{reserves.debut_outdoor}} / {{reserves.debut}}
+                {% elif reserves.baptismal %}
+                -{{reserves.baptismal}}
+                {% elif reserves.birthday%}
+                -{{reserves.birthday}}
+                {% else %}
+                -None
+                {% endif %}
+
+
+                
+                
+                
+              
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                has been approved.
+                
+                
+                
+                
+                
+                
+                <i> Proceed Here -->
+
+
+
+                </i>
+            
+            
+            
+            </div>
+            </td>
+            <td style="width:100%;">
+              <a href="{% url 'payment' reserves.id %}" class="btn btn-primary" style="">Reservation Fee</a>
+   
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+  
+    
+  
+  </div>
+{% endblock content %}

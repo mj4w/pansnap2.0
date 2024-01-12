@@ -1,0 +1,379 @@
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@500;700;900&display=swap');
+        :root {
+            --pale-blue: hsl(225, 100%, 94%);
+            --bright-blue: hsl(245, 75%, 52%);
+            --very-pale-blue: hsl(225, 100%, 98%);
+            --desaturated-blue: hsl(224, 23%, 55%);
+            --dark-blue: hsl(223, 47%, 23%);
+        }
+        body {
+            font-family: 'Red Hat Display', sans-serif;
+            font-size: 16px;
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            padding: 0px;
+            margin: 0px;
+
+            background: url(/static/images/bg_body.png);
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+         
+            background-repeat: no-repeat;
+            background-size: cover;
+
+            z-index: -1;
+        }
+        main {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        }
+        .card {
+            white-space: normal;
+            width: 380px;
+            min-height: 200px;
+            margin: 20px auto;
+            border-radius: 10px;
+            background: white;
+        }
+        .card .card-header {
+            width: 100%;
+            height: 156px;
+            border-radius: 10px 10px 0px 0px;
+        }
+        .card .card-header img {
+            width: 100%;
+            border-radius: 10px 10px 0px 0px;
+        }
+        .card .card-body {
+            width: 100%;
+            height: auto;
+            padding: 25px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .card .card-body .card-title {
+            width: 100%;
+            font-weight: 900;
+            color: var(--dark-blue);
+            text-align: center;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .card .card-body .card-text {
+            width: 100%;
+            color: var(--desaturated-blue);
+            text-align: center;
+            line-height: 25px;
+            padding: 15px 0px;
+            box-sizing: border-box;
+        }
+        .card .card-body .card-plan {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            column-gap: 15px;
+            background: var(--very-pale-blue);
+            border-radius: 10px;
+            padding: 15px;
+            box-sizing: border-box;
+        }
+        .card .card-body .card-plan .card-plan-img {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+        }
+        .card .card-body .card-plan .card-plan-text {
+            flex-grow: 6;
+            display: flex;
+            flex-direction: column;
+            row-gap: 4px;
+        }
+        .card .card-body .card-plan .card-plan-text .card-plan-title {
+            color: var(--dark-blue);
+            font-weight: 900;
+            font-size: 14px;
+        }
+        .card .card-body .card-plan .card-plan-text .card-plan-price {
+            color: var(--desaturated-blue);
+            font-size: 14px;
+        }
+        .card .card-body .card-plan .card-plan-link {
+            flex-grow: 1;
+        }
+        .card .card-body .card-plan .card-plan-link a {
+            color: var(--bright-blue);
+            font-weight: 700;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .card .card-body .card-plan .card-plan-link a:hover {
+            color: #766cf1;
+            text-decoration: none;;
+        }
+        .card .card-body .card-payment-button {
+            padding: 25px 0px 15px;
+            box-sizing: border-box;
+        }
+        .card .card-body .card-payment-button button {
+            width: 100%;
+            height: 50px;
+            border: 0;
+            background: var(--bright-blue);
+            color: white;
+            font-weight: 700;
+            border-radius: 10px;
+            box-shadow: 0px 10px 20px 0px hsl(245deg 75% 52% / 44%);
+            cursor: pointer;
+        }
+        .card .card-body .card-payment-button button:hover {
+            background: #766cf1;
+        }
+        .card .card-body .card-cancel-button {
+            padding: 15px 0px;
+            box-sizing: border-box;
+        }
+        .card .card-body .card-cancel-button button {
+            width: 100%;
+            border: 0;
+            background: none;
+            color: var(--desaturated-blue);
+            font-weight: 900;
+            text-align: center;
+            cursor: pointer;
+        }
+        .card .card-body .card-cancel-button button:hover {
+            color: var(--dark-blue);
+        }
+        
+
+        @media (max-width: 375px) {
+            body {
+                height: auto;
+            }
+            body::before {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                width: 100%;
+                height: 100%;
+                background: url(https://rvs-order-ummary-component.netlify.app/images/pattern-background-mobile.svg);
+                background-repeat: no-repeat;
+                background-size: contain;
+                background-position: top;
+                z-index: -1;
+            }
+            
+        }
+</style>
+<main>
+    <div class="card">
+        <div class="card-header">
+            <img src="/static/images/camera.webp" alt="" >
+        </div>
+        <div class="card-body">
+            <div class="card-title" style="color: white; margin-top: 8px; font-family: Rubik, ser;">Reservation Fee</div>
+            <div class="card-text" style="text-align: justify; margin-top: 20px; color: #0e2c40;" >Greetings from Pansnap Studio. We are pleased to inform you that we have reviewed your reservation request and it has been approved. To secure your reservation, please pay for the <b><i>50%</i></b> of the total amount of your event/package which will serve as your reservation fee. You must pay it within <b>two (2) days</b>. Failure to complete the requirement will result to declining your reservation.<br><center> Thank you!</center></div>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                {% if obj.outdoor_shoot %}
+                <td data-th="Full Name" ><p style="color: red;">{{obj.outdoor_shoot}}</p></td>
+                {% else  %}
+                <td data-th="Full Name"><p style="color: red;">{{obj.indoor_shoot}}</p></td>
+                {% endif%}
+                {% if obj.wedding_pre_nuptial %}
+                    <td data-th="Full Name"><p style="color: green;">{{obj.wedding_pre_nuptial}}</p></td>
+                {% elif obj.pre_debut %}
+                    <td data-th="Full Name"><p style="color: green;">{{obj.pre_debut}}</p></td>
+                {% elif obj.toddler %}
+                    <td data-th="Toddler"><p style="color: green;">{{obj.toddler}}</p></td>
+                {% elif obj.pre_birthday %}
+                    <td data-th="Full Name"><p style="color: green;">{{obj.pre_birthday}}</p></td>
+                {% elif obj.maternity %}
+                    <td data-th="Full Name"><p style="color: green;">{{obj.maternity}}</p></td>
+                {% elif obj.family_portrait %}
+                    <td data-th="Full Name"><p style="color: green;">{{obj.family_portrait}}</p></td>
+                {% elif obj.graduation_photo%}
+                    <td data-th="Full Name"><p style="color: green;">{{obj.graduation_photo}}</p></td>
+                {% elif obj.barkada_shoot%}
+                    <td data-th="Full Name"><p style="color: green;">{{obj.barkada_shoot}}</p></td>
+                <!--Outdoor-->
+                {% elif obj.church_wedding and obj.wedding_event %}
+                <td><p style="color: green;">{{obj.church_wedding}} / {{obj.wedding_event}} </p></td>
+                {% elif obj.civil_wedding and obj.prenup_outdoor %}
+                <td><p style="color: green;">{{obj.civil_wedding}} / {{obj.prenup_outdoor}}</p></td>
+                
+                {% elif obj.church_wedding and obj.prenup_outdoor %}
+                <td><p style="color: green;">{{obj.church_wedding}} / {{obj.prenup_outdoor}}</p></td>
+                {% elif obj.civil_wedding and obj.wedding_event %}
+                <td><p style="color: green;">{{obj.civil_wedding}} / {{obj.wedding_event}}</p></td>
+                {% elif obj.pre_debut_outdoor %}
+
+                <td><p style="color: green;">{{obj.pre_debut_outdoor}} / {{obj.debut}}</p></td>
+                {% elif obj.debut_outdoor %}
+
+                <td><p style="color: green;">{{obj.debut_outdoor}} / {{obj.debut}}</p></td>
+                {% elif obj.baptismal %}
+                <td><p style="color: green;">{{obj.baptismal}}</p></td>
+                {% elif obj.birthday%}
+                <td><p style="color: green;">{{obj.birthday}}</p></td>
+
+                {% endif %}
+
+
+                
+                {% if obj.wedding_package1  %}
+                <td data-th="Full Name">{{obj.wedding_package1}}</td>
+                {% elif obj.wedding_package2 %}
+                <td data-th="Full Name">{{obj.wedding_package2}}</td>
+                {% elif obj.wedding_package3 %}
+                <td data-th="Full Name">{{obj.wedding_package3}}</td>
+    
+    
+    
+                
+                {% elif obj.debut_package1 %}
+                <td data-th="Full Name">{{obj.debut_package1}}</td>
+                {% elif obj.debut_package2 %}
+                <td data-th="Full Name">{{obj.debut_package2}}</td>
+                {% elif obj.debut_package3 %}
+                <td data-th="Full Name">{{obj.debut_package3}}</td>
+    
+    
+    
+                {% elif obj.toddler_package1%}
+                <td data-th="Full Name">{{obj.toddler_package1}}</td>
+                {% elif obj.toddler_package2%}
+                <td data-th="Full Name">{{obj.toddler_package2}}</td>
+                {% elif obj.toddler_package3 %}
+                <td data-th="Full Name">{{obj.toddler_package3}}</td>
+    
+                
+                {% elif obj.pre_birthday_package1 %}
+                <td data-th="Full Name">{{obj.pre_birthday_package1}}</td>
+                {% elif obj.pre_birthday_package2 %}
+                <td data-th="Full Name">{{obj.pre_birthday_package2}}</td>
+                {% elif obj.pre_birthday_package3 %}
+                <td data-th="Full Name">{{obj.pre_birthday_package3}}</td>
+                
+                {% elif obj.maternity_package1 %}
+                <td data-th="Full Name">{{obj.maternity_package1}}</td>
+                {% elif obj.maternity_package2%}
+                <td data-th="Full Name">{{obj.maternity_package2}}</td>
+                {% elif obj.maternity_package3%}
+                <td data-th="Full Name">{{obj.maternity_package3}}</td>
+                
+    
+                {% elif obj.family_portrait_package1 %}
+                <td data-th="Full Name">{{obj.family_portrait_package1}}</td>
+                {% elif obj.family_portrait_package2%}
+                <td data-th="Full Name">{{obj.family_portrait_package2}}</td>
+                {% elif obj.family_portrait_package3%}
+                <td data-th="Full Name">{{obj.family_portrait_package3}}</td>
+    
+    
+                {% elif obj.graduation_package1 %}
+                <td data-th="Full Name">{{obj.graduation_package1}}</td>
+                {% elif obj.graduation_package2 %}
+                <td data-th="Full Name">{{obj.graduation_package2}}</td>
+                {% elif obj.graduation_package3 %}
+                <td data-th="Full Name">{{obj.graduation_package3}}</td>
+    
+                {% elif obj.barkada_package1 %}
+                <td data-th="Full Name">{{obj.barkada_package1}}</td>
+                {% elif obj.barkada_package2%}
+                <td data-th="Full Name">{{obj.barkada_package2}}</td>
+                {% elif obj.barkada_package3%}
+                <td data-th="Full Name">{{obj.barkada_package3}}</td>
+               <!--Outdoor-->
+        {% elif obj.video_package %}
+        <td>{{obj.video_package}}</td>
+        {% elif obj.package_outdoor%}
+        <td>{{obj.package_outdoor}}</td>
+        {% elif obj.package2_outdoor%}
+        <td>{{obj.package2_outdoor}}</td>   
+
+        {% elif obj.video_package2 %}
+        <td>{{obj.video_package2}}</td>
+        {% elif obj.photo_video%}
+        <td>{{obj.photo_video}}</td>
+        {% elif obj.photo_video_2%}
+        <td>{{obj.photo_video_2}}</td>   
+
+        {% elif obj.pre_debut_outdoor1 %}
+        <td>{{obj.pre_debut_outdoor1}}</td>
+        {% elif obj.pre_debut_outdoor2%}
+        <td>{{obj.pre_debut_outdoor2}}</td>
+        {% elif obj.pre_debut_outdoor3%}
+        <td>{{obj.pre_debut_outdoor3}}</td>   
+        
+        {% elif obj.package_debut1 %}
+        <td>{{obj.package_debut1}}</td>
+        {% elif obj.package_debut2%}
+        <td>{{obj.package_debut2}}</td>
+        {% elif obj.package_debut3%}
+        <td>{{obj.package_debut3}}</td>   
+    
+         
+        {% elif obj.baptismal_outdoor1 %}
+        <td>{{obj.baptismal_outdoor1}}</td>
+        {% elif obj.baptismal_outdoor2%}
+        <td>{{obj.baptismal_outdoor2}}</td>
+        {% elif obj.baptismal_outdoor3%}
+        <td>{{obj.baptismal_outdoor3}}</td>   
+
+        {% elif obj.birthday_outdoor1 %}
+        <td>{{obj.birthday_outdoor1}}</td>
+        {% elif obj.birthday_outdoor2%}
+        <td>{{obj.birthday_outdoor2}}</td>
+        {% elif obj.birthday_outdoor3%}
+        <td>{{obj.birthday_outdoor3}}</td>   
+        {% endif %}
+                <p>Mode of Payment:</p>
+                <div class="card-plan">
+                    Gcash Receipt 
+                    <div class="card-plan-img"></div>
+                    <div class="card-plan-text">
+                        <input type="file" name="image" accept="image/png, image/jpeg">
+                    </div>
+                   
+                </div>
+                <div class="card-plan">
+                    Cash 
+                    <div class="card-plan-img"></div>
+                    <div class="card-plan-text">
+                        Visit Pansnap Studio <a href="https://www.google.com/maps/place/Pansnap+Studio/@14.8000848,120.875515,3a,75y,208.46h,90t/data=!3m7!1e1!3m5!1sUIn3ScU76ttaa5M4QToY7A!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fpanoid%3DUIn3ScU76ttaa5M4QToY7A%26cb_client%3Dmaps_sv.tactile.gps%26w%3D203%26h%3D100%26yaw%3D208.46394%26pitch%3D0%26thumbfov%3D100!7i13312!8i6656!4m5!3m4!1s0x339653e512c3f539:0x7e49060fd3fd66bc!8m2!3d14.8000537!4d120.8754779" target="_blank">Here</a>
+                    </div>
+                   
+                </div>
+        
+          
+            Address:<br><p >218 Macapatan, Baranggay Balubad, Bulakan,Bulacan,3017</p>
+            <div class="card-payment-button">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+            <div class="card-cancel-button">
+                <button>Go back</button>
+            </div>
+        </div>
+    </div>
+</main>

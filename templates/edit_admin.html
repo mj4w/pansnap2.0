@@ -1,0 +1,460 @@
+<style>
+    @import 'https://fonts.googleapis.com/css?family=Open+Sans:600,700';
+
+* {font-family: 'Open Sans', sans-serif;}
+
+.rwd-table {
+  margin: auto;
+  min-width: 300px;
+  max-width: 100%;
+  border-collapse: collapse;
+}
+
+.rwd-table .tr {
+        border-top: none;
+        background-color: #283E51;
+        color: white;
+}
+
+
+.rwd-table tr {
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  background-color: #f5f9fc;
+}
+
+.rwd-table tr:nth-child(odd):not(:first-child) {
+  background-color: #ebf3f9;
+}
+
+.rwd-table th {
+  display: none;
+}
+
+.rwd-table td {
+  display: block;
+}
+
+.rwd-table td:first-child {
+  margin-top: .5em;
+}
+
+.rwd-table td:last-child {
+  margin-bottom: .5em;
+}
+
+.rwd-table td:before {
+  content: attr(data-th) ": ";
+  font-weight: bold;
+  width: 120px;
+  display: inline-block;
+  color: #000;
+}
+
+.rwd-table th,
+.rwd-table td {
+  text-align: left;
+}
+
+.rwd-table {
+  color: #333;
+  border-radius: .4em;
+  overflow: hidden;
+}
+
+.rwd-table tr {
+  border-color: #bfbfbf;
+}
+
+.rwd-table th,
+.rwd-table td {
+  padding: .5em 1em;
+}
+@media screen and (max-width: 601px) {
+  .rwd-table tr:nth-child(2) {
+    border-top: none;
+  }
+}
+@media screen and (min-width: 600px) {
+  .rwd-table tr:hover:not(:first-child) {
+    background-color: #d8e7f3;
+  }
+  .rwd-table td:before {
+    display: none;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    display: table-cell;
+    padding: .25em .5em;
+  }
+  .rwd-table th:first-child,
+  .rwd-table td:first-child {
+    padding-left: 0;
+  }
+  .rwd-table th:last-child,
+  .rwd-table td:last-child {
+    padding-right: 0;
+  }
+  .rwd-table th,
+  .rwd-table td {
+    padding: 1em !important;
+  }
+}
+
+
+/* THE END OF THE IMPORTANT STUFF */
+
+/* Basic Styling */
+body {
+background: #4B79A1;
+background: -webkit-linear-gradient(to left, #4B79A1 , #283E51);
+background: linear-gradient(to left, #4B79A1 , #283E51);        
+}
+h1 {
+  text-align: center;
+  font-size: 2.4em;
+  color: #f2f2f2;
+}
+.container {
+  display: block;
+  text-align: center;
+}
+h3 {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-size: 1.5em;
+  color: #cecece;
+}
+h3:before {
+  content: "\25C0";
+  position: absolute;
+  left: -50px;
+  -webkit-animation: leftRight 2s linear infinite;
+  animation: leftRight 2s linear infinite;
+}
+h3:after {
+  content: "\25b6";
+  position: absolute;
+  right: -50px;
+  -webkit-animation: leftRight 2s linear infinite reverse;
+  animation: leftRight 2s linear infinite reverse;
+}
+@-webkit-keyframes leftRight {
+  0%    { -webkit-transform: translateX(0)}
+  25%   { -webkit-transform: translateX(-10px)}
+  75%   { -webkit-transform: translateX(10px)}
+  100%  { -webkit-transform: translateX(0)}
+}
+@keyframes leftRight {
+  0%    { transform: translateX(0)}
+  25%   { transform: translateX(-10px)}
+  75%   { transform: translateX(10px)}
+  100%  { transform: translateX(0)}
+}
+
+</style>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="container">
+        <h1>Client Reservation Records</h1>
+          <table class="rwd-table">
+            <tbody>
+              <tr class="tr">
+                <th>Username</th>
+                <th>Full Name</th>
+                <th>Email Address</th>
+                <th>Contact Number</th>
+                <th>FB URL</th>
+              
+              </tr>
+              <tr>
+                <td>{{obj.user}}</td>
+                <td data-th="Full Name" >{{reserves.first_name_reserve}} {{reserves.last_name_reserve}}</td>
+                <td data-th="Email">{{reserves.email_address}}</td>
+                <td data-th="Contact Number">{{reserves.contact_number_reserve}}</td>
+                <td data-th="FB">{{reserves.facebook_url}}</td>
+               
+              </tr>
+              <tr class="tr" style="color: white; background-color:#283E51;">
+                <th>Street Number</th>
+                <th>Baranggay</th>
+                <th>Zip Code</th>
+                <th>Municipality</th>
+                <th>Province</th>
+        
+              </tr>
+              <tr>
+                <td data-th="Street">{{reserves.street_number}}</td>
+                <td data-th="Baranggay">{{reserves.baranggay}}</td>
+                <td data-th="Zip Code">{{reserves.zip_code}}</td>
+                <td data-th="Municipality">{{reserves.municipality}}</td>
+                <td data-th="Province">{{reserves.province}}</td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="container">
+            <h1></h1>
+              <table class="rwd-table">
+                <tbody>
+                  <tr class="tr">
+                    <th>Username</th>
+                    <th >Date/Time</th>
+                    <th >Type</th>
+                    <th >Event</th>
+                    <th >Package</th>
+                  
+                  </tr>
+                  <tr>
+                    <td>{{obj.user}}</td>
+                    {% if obj.indoor_date %}
+                        {% if obj.indoor_radio1%}
+                        <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio1}}</td>
+                        {% elif obj.indoor_radio2%}
+                        <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio2}}</td>
+                        {% elif obj.indoor_radio3%}
+                        <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio3}}</td>
+                        {% elif obj.indoor_radio4%}
+                        <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio4}}</td>
+                        {% elif obj.indoor_radio5%}
+                        <td data-th="Full Name">{{reserves.indoor_date}} / {{reserves.indoor_radio5}}</td>
+                        {% else %}
+                        <td data-th="Full Name">Need to Complete</td>
+                        {% endif %}
+                        {% elif obj.outdoor_date %}
+                        <td>{{reserves.outdoor_date}} / start {{reserves.outdoor_time}}  end {{reserves.outdoor_end}}</td>
+                    {% else %}
+                    <td>{{reserves.outdoor_date}} / start {{reserves.outdoor_time}}  end {{reserves.outdoor_end}}</td>
+                    {% endif %}
+                      
+                    {% if obj.outdoor_shoot %}
+                    <td data-th="Full Name">{{reserves.outdoor_shoot}}</td>
+                    {% else  %}
+                    <td data-th="Full Name">{{reserves.indoor_shoot}}</td>
+                    {% endif%}
+                    {% if obj.wedding_pre_nuptial %}
+                        <td data-th="Full Name">{{reserves.wedding_pre_nuptial}}</td>
+                    {% elif obj.pre_debut %}
+                        <td data-th="Full Name">{{reserves.pre_debut}}</td>
+                    {% elif obj.toddler %}
+                        <td data-th="Toddler">{{reserves.toddler}}</td>
+                    {% elif obj.pre_birthday %}
+                        <td data-th="Full Name">{{reserves.pre_birthday}}</td>
+                    {% elif obj.maternity %}
+                        <td data-th="Full Name">{{reserves.maternity}}</td>
+                    {% elif obj.family_portrait %}
+                        <td data-th="Full Name">{{reserves.family_portrait}}</td>
+                    {% elif obj.graduation_photo%}
+                        <td data-th="Full Name">{{reserves.graduation_photo}}</td>
+                    {% elif obj.barkada_shoot%}
+                        <td data-th="Full Name">{{reserves.barkada_shoot}}</td>
+                    <!--Outdoor-->
+							   {% elif obj.church_wedding and obj.wedding_event %}
+							   <td>{{reserves.church_wedding}} / {{reserves.wedding_event}}</td>
+							   {% elif obj.civil_wedding and obj.prenup_outdoor %}
+							   <td>{{reserves.civil_wedding}} / {{reserves.prenup_outdoor}}</td>
+							   
+							   {% elif obj.church_wedding and obj.prenup_outdoor %}
+							   <td>{{reserves.church_wedding}} / {{reserves.prenup_outdoor}}</td>
+							   {% elif obj.civil_wedding and obj.wedding_event %}
+							   <td>{{reserves.civil_wedding}} / {{reserves.wedding_event}} </td>
+
+
+							   {% elif obj.civil_wedding and obj.wedding_event %}
+							   <td>{{reserves.civil_wedding}} / {{reserves.wedding_event}}</td>
+							   {% elif obj.civil_wedding and obj.prenup_outdoor %}
+							   <td>{{reserves.civil_wedding}} / {{reserves.prenup_outdoor}}</td>
+							   
+							   {% elif obj.civil_wedding and obj.prenup_outdoor %}
+							   <td>{{reserves.civil_wedding}} / {{reserves.prenup_outdoor}}</td>
+							   {% elif obj.civil_wedding and obj.wedding_event %}
+							   <td>{{reserves.civil_wedding}} / {{reserves.wedding_event}} </td>
+
+
+
+							   {% elif obj.pre_debut_outdoor %}
+	   
+							   <td>{{reserves.pre_debut_outdoor}} / {{reserves.debut}}</td>
+							   {% elif obj.debut_outdoor %}
+	   
+							   <td>{{reserves.debut_outdoor}} / {{reserves.debut}}</td>
+							   {% elif obj.baptismal %}
+							   <td>{{reserves.baptismal}}</td>
+							   {% elif obj.birthday%}
+							   <td>{{reserves.birthday}}</td>
+							   {% else %}
+							   <td>None</td>
+							   {% endif %}
+           
+                    {% if obj.wedding_package1  %}
+                    <td data-th="Full Name">{{reserves.wedding_package1}}</td>
+                    {% elif obj.wedding_package2 %}
+                    <td data-th="Full Name">{{reserves.wedding_package2}}</td>
+                    {% elif obj.wedding_package3 %}
+                    <td data-th="Full Name">{{reserves.wedding_package3}}</td>
+        
+        
+        
+                    
+                    {% elif obj.debut_package1 %}
+                    <td data-th="Full Name">{{reserves.debut_package1}}</td>
+                    {% elif obj.debut_package2 %}
+                    <td data-th="Full Name">{{reserves.debut_package2}}</td>
+                    {% elif obj.debut_package3 %}
+                    <td data-th="Full Name">{{reserves.debut_package3}}</td>
+        
+        
+        
+                    {% elif obj.toddler_package1%}
+                    <td data-th="Full Name">{{reserves.toddler_package1}}</td>
+                    {% elif obj.toddler_package2%}
+                    <td data-th="Full Name">{{reserves.toddler_package2}}</td>
+                    {% elif obj.toddler_package3 %}
+                    <td data-th="Full Name">{{reserves.toddler_package3}}</td>
+        
+                    
+                    {% elif obj.pre_birthday_package1 %}
+                    <td data-th="Full Name">{{reserves.pre_birthday_package1}}</td>
+                    {% elif obj.pre_birthday_package2 %}
+                    <td data-th="Full Name">{{reserves.pre_birthday_package2}}</td>
+                    {% elif obj.pre_birthday_package3 %}
+                    <td data-th="Full Name">{{reserves.pre_birthday_package3}}</td>
+                    
+                    {% elif obj.maternity_package1 %}
+                    <td data-th="Full Name">{{reserves.maternity_package1}}</td>
+                    {% elif obj.maternity_package2%}
+                    <td data-th="Full Name">{{reserves.maternity_package2}}</td>
+                    {% elif obj.maternity_package3%}
+                    <td data-th="Full Name">{{reserves.maternity_package3}}</td>
+                    
+        
+                    {% elif obj.family_portrait_package1 %}
+                    <td data-th="Full Name">{{reserves.family_portrait_package1}}</td>
+                    {% elif obj.family_portrait_package2%}
+                    <td data-th="Full Name">{{reserves.family_portrait_package2}}</td>
+                    {% elif obj.family_portrait_package3%}
+                    <td data-th="Full Name">{{reserves.family_portrait_package3}}</td>
+        
+        
+                    {% elif obj.graduation_package1 %}
+                    <td data-th="Full Name">{{reserves.graduation_package1}}</td>
+                    {% elif obj.graduation_package2 %}
+                    <td data-th="Full Name">{{reserves.graduation_package2}}</td>
+                    {% elif obj.graduation_package3 %}
+                    <td data-th="Full Name">{{reserves.graduation_package3}}</td>
+        
+                    {% elif obj.barkada_package1 %}
+                    <td data-th="Full Name">{{reserves.barkada_package1}}</td>
+                    {% elif obj.barkada_package2%}
+                    <td data-th="Full Name">{{reserves.barkada_package2}}</td>
+                    {% elif obj.barkada_package3%}
+                    <td data-th="Full Name">{{reserves.barkada_package3}}</td>
+                   <!--Outdoor-->
+            {% elif obj.video_package %}
+            <td>{{reserves.video_package}}</td>
+            {% elif obj.package_outdoor%}
+            <td>{{reserves.package_outdoor}}</td>
+            {% elif obj.package2_outdoor%}
+            <td>{{reserves.package2_outdoor}}</td>   
+
+            {% elif obj.video_package2 %}
+            <td>{{reserves.video_package2}}</td>
+            {% elif obj.photo_video%}
+            <td>{{reserves.photo_video}}</td>
+            {% elif obj.photo_video_2%}
+            <td>{{reserves.photo_video_2}}</td>   
+
+            {% elif obj.pre_debut_outdoor1 %}
+            <td>{{reserves.pre_debut_outdoor1}}</td>
+            {% elif obj.pre_debut_outdoor2%}
+            <td>{{reserves.pre_debut_outdoor2}}</td>
+            {% elif obj.pre_debut_outdoor3%}
+            <td>{{reserves.pre_debut_outdoor3}}</td>   
+            
+            {% elif obj.package_debut1 %}
+            <td>{{reserves.package_debut1}}</td>
+            {% elif obj.package_debut2%}
+            <td>{{reserves.package_debut2}}</td>
+            {% elif obj.package_debut3%}
+            <td>{{reserves.package_debut3}}</td>   
+        
+             
+            {% elif obj.baptismal_outdoor1 %}
+            <td>{{reserves.baptismal_outdoor1}}</td>
+            {% elif obj.baptismal_outdoor2%}
+            <td>{{reserves.baptismal_outdoor2}}</td>
+            {% elif obj.baptismal_outdoor3%}
+            <td>{{reserves.baptismal_outdoor3}}</td>   
+
+            {% elif obj.birthday_outdoor1 %}
+            <td>{{reserves.birthday_outdoor1}}</td>
+            {% elif obj.birthday_outdoor2%}
+            <td>{{reserves.birthday_outdoor2}}</td>
+            {% elif obj.birthday_outdoor3%}
+            <td>{{reserves.birthday_outdoor3}}</td>   
+
+
+            {% elif obj.v1 %}
+            <td>{{reserves.v1}}</td>
+            {% elif obj.v2%}
+            <td>{{reserves.v2}}</td>
+            {% elif obj.v3%}
+            <td>{{reserves.v3}}</td>   
+
+            {% elif obj.v4 %}
+            <td>{{reserves.v4}}</td>
+            {% elif obj.v5%}
+            <td>{{reserves.v5}}</td>
+            {% elif obj.v6%}
+            <td>{{reserves.v6}}</td>  
+
+            {% else %}
+            <td>None</td>
+            {% endif %}
+                  </tr>
+                  <tr class="tr" style="color: white; background-color:#283E51;">
+                    <th >Picture/Flashdrive/Frame</th>
+                    <th>Comment</th>
+                    <th>Account Verification</th>
+                    <th>Status/ Completed</th>
+                    <th>SAVE CANCEL</th>
+        
+            
+                  </tr>
+                  <tr>
+                    {% if obj.selection1  %}
+                    <td data-label="selection">{{reserves.selection1}}  / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+                    {% elif obj.selection2  %}
+                    <td data-label="selection">{{reserves.selection2}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+                    {% elif obj.selection3  %}
+                    <td data-label="selection">{{reserves.selection3}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+                    {% elif obj.selection4  %}
+                    <td data-label="selection">{{reserves.selection4}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+                    {% elif obj.selection5  %}
+                    <td data-label="selection">{{reserves.selection5}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+                    {% elif obj.selection6  %}
+                    <td data-label="selection">{{reserves.selection6}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+                    {% elif obj.selection7  %}
+                    <td data-label="selection">{{reserves.selection7}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+                    {% elif obj.selection8  %}
+                    <td data-label="selection">{{reserves.selection8}}   / {{reserves.flashdrive}}  / {{reserves.yes}} </td>
+                    {% else %}
+                    <td data-label="selection">No Additional</td>
+                    {% endif %}
+                  
+                    <td data-label="comment">{{reserves.comment_request}}</td>
+                    <th data-label="verification">{{reserves.verify_image}}</th>
+                    <th data-label="status">{{reserves.pending}}<span style="color:rgb(255, 181, 52);">Pending</span> <br> {{reserves.status}}<span style="color:rgb(203, 255, 16);">Approved</span> <br> 
+                      {{reserves.reserved}}<span style="color: rgb(117, 189, 247);">Reserved</span>  <br> 
+                      {{reserves.completed}}<span style="color:rgb(61, 255, 61);">Completed</span>  <br> {{reserves.declined}}<span style="color: red;">Declined</span></th>
+                    <th><button type="submit">Save</button> <a href="{% url 'home' %}">Cancel</a></th>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+</form>

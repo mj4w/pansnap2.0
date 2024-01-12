@@ -1,67 +1,71 @@
-{%extends "home.html"%}
+{% extends 'base_page/base.html' %}
 {%block content%}
-<!-- Contact Form -->
-<section>
-    <div class="contact">
-        <div class="contactbackground">
-            <div class="contactfield">
-                <h2>Contact Us</h2>
-                <p>We'd love to hear from you. Here's how you can reach us.
-                </p>
-            </div>
-            <div class="container">
-                <div class="contactinfo">
-                    <div class="box">
-                        <div class="icon">
-                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                        </div>
-                        <div class="text">
-                            <h3>Address</h3>
-                            <p>218 Macapatan, <br>Baragay Balubad, <br>Bulakan, Bulacan, 3017</p>
-                        </div>
-                     </div>
-                    <div class="box">
-                        <div class="icon">
-                            <i class="fa fa-phone" aria-hidden="true"></i>  
-                        </div>
-                        <div class="text">
-                            <h3>Phone</h3>
-                            <p>Smart: 0961-792-0778</p>
-                        </div>
-                    </div>
-                    <div class="box">
-                        <div class="icon">
-                            <i class="fa fa-envelope" aria-hidden="true"></i>
-                        </div>
-                        <div class="text">
-                            <h3>Email</h3>
-                            <p>pansnapstudio26@gmail.com</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="contactform">
-                    <form>
-                        <h2>Get in Touch</h2>
-                        <div class="inputbox">
-                            <input type="text" name="" required= "required">
-                            <span>Full Name</span>
-                        </div>
-                        <div class="inputbox">
-                            <input type="email" name="" required= "required">
-                            <span>Email</span>
-                        </div>
-                        <div class="inputbox">
-                            <textarea required="required"></textarea>
-                            <span>Type your Message Here</span>
-                        </div>
-                        <div class="inputbox">
-                            <input type="submit" name="" value="Send">
-                        </div>
-                    </form> 
-                </div>
-            </div>
-        </div>
-    </div>
+
+<section class="contact" style="margin-top: 40px;">
+		<div class="content-contact" data-aos="fade-up">
+			<h2>Contact Us</h2>
+			<p>We'd love to hear from you. Here's how you can reach us.</p>
+		</div>
+		<div class="container">
+			<div class="contactInfo">
+				<div class="boxes" data-aos="fade-right">
+					<div class="icon"><i class="fa fa-map-marker" aria-hidden="true"></i></div>
+					<div class="text">
+						<h3>Address</h3>
+						<p>218 Macapatan,<br>Baranggay Balubad,<br>Bulakan,Bulacan,3017</p>
+					</div>
+	
+				</div>
+				<div class="boxes" data-aos="fade-right">
+					<div class="icon"><i class="fa fa-phone" aria-hidden="true"></i></div>
+					<div class="text">
+						<h3>Phone</h3>
+						<p>Smart: 0961-792-0778</p>
+					</div>
+	
+				</div>
+				<div class="boxes" data-aos="fade-right">
+					<div class="icon"><i class="fa fa-envelope" aria-hidden="true"></i></div>
+					<div class="text">
+						<h3>Email</h3>
+						<p>pansnapstudio26@gmail.com</p>
+					</div>
+	
+				</div>
+			</div>
+			<div class="contactForm" data-aos="fade-left">
+				<form method="POST" action="{% url 'contact' %}">
+					{% csrf_token %}
+			
+					<h2>Send Message</h2>
+					{% if request.user.last_name and request.user.first_name %}
+					{% else %}
+					<div class="inputBox">
+						<input type="text" name="name" required="required">
+						<span>Full name</span>
+					</div>
+					{% endif %}
+					{% if request.user.email %}
+					
+					{% else %}
+					<div class="inputBox">
+						<input type="email" name="email" required="required">
+						<span>Email</span>
+					</div>
+					{% endif %}
+					<div class="inputBox">
+						<textarea required="required" name="message"></textarea>
+						<span>Type your Message...</span>
+					</div>
+					<div class="inputBox">
+						<input type="submit" name="Send">
+					</div>
+				</form>
+			</div>
+		</div>
+	
+</section>
+
 
     <!-- MAP Location -->
     <div>
@@ -74,5 +78,4 @@
         referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     </div>
-</section>
 {%endblock content%}

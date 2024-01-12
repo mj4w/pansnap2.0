@@ -1,0 +1,194 @@
+{% extends 'base_page/base.html' %}
+{% block content %}
+
+<div class="content">
+    <br>
+    <br>
+
+    <div class="content-wrapper" id="signup">
+        <h2>Welcome </h2>
+        <p>We're so excited you're here. Feel free to explore our web-based photo and video site. Here, you may discover adorable high-quality service of photos and videos for hire. The perfect work approach can be difficult, dirty, and complicated at times. That's why we created Pansnap Studio - a place where people get work done, together. Our goal is to capture the special moment for you so that you can have wonderful memories to look back to. Of course, you might just enjoy a fun-filled look through the collection. We are glad to hear your thoughts about the pictures and videos on this site. You're in the right place. Let's create something beautiful, and uniquely yours. SAVE EVERY SHOT!
+            
+        </p>
+        
+        <style>
+	section{
+		position: relative;
+		width: 100%;
+		height: 100vh;
+		display: flex;
+
+	}
+	.contentBx{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 50%;
+		height: 100%;
+
+
+	}
+	.imgBx {
+		position: relative;
+		width: 50%;
+		height: 100%;
+	}
+	.imgBx img{
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+	.contentBx .formBx h2{
+		color: #006eff;
+		font-weight: 600;
+		font-size: 1.5rem;
+		margin-bottom: 20px;
+		display: inline-block;
+	}
+	.contentBx .formBx .inputBx{
+		margin-bottom: 20px;
+	}
+	.contentBx .formBx .inputBx span{
+		font-size: 16px;
+		margin-bottom: 5px;
+		display: inline-block;
+		color: #607db8;
+		font-weight: 300;
+		font-size: 16px;
+		letter-spacing: 1px;
+
+	}
+	.inputBx input{
+		width: 100%;
+		padding: 10px 20px ;
+		outline: none;
+		font-weight: 400;
+		border: 1px solid #607d8b;
+		font-size: px;
+		letter-spacing: 1px;
+		color: #607d8b;
+		background:transparent;
+		border-radius: 30px;
+	}
+	.inputBx input[type="submit"]{
+		width: 50%;
+		background: #006eff; 
+		color:#EDE9E8;
+		outline: none;
+		border: none;
+		font-weight: 500;
+		cursor: pointer;
+	}
+	.imgBx::before{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 50%;
+		background: rgb(0,49,74);
+		background: linear-gradient(0deg, rgba(0,49,74,1) 0%, rgba(0,105,133,1) 48%, rgba(0,165,204,1) 100%);
+		z-index: 1;
+		mix-blend-mode: screen;
+	}
+	@media (max-width:768px){
+		.imgBx{
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+		}
+		.contentBx{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: 100%;
+			z-index: 1;
+
+		}
+		.contentBx .formBx{
+			width: 100%;
+			padding: 40px;
+			background: white;
+			margin: 50px;
+		}
+		.inputBx p{
+			color: black;
+
+		}
+		.inputBx input[type="submit"]{
+			width: 100%;
+		}
+		.login_container{
+			width: 100%;
+			margin: 0 auto;
+			display: block;
+		}
+		.sec {
+			width: 100%;
+		}
+        
+	}
+
+	
+</style>
+<section style="margin-top:50px;" class="sec">
+	<div class="imgBx" data-aos="fade-right">
+		<img src="/static/images/LogInbg.jpg">
+	</div>
+	<div class="contentBx">
+		<div class="formBx">
+			<h2>Login</h2>
+			<form method="POST">
+				{% csrf_token %}
+				<div class="inputBx">
+					<span>Username</span>
+					<input type="text" name="username">
+				</div>
+				
+				<div class="inputBx">
+					<span>Password</span>
+					<input type="password" name="password">
+				</div>
+				<div class="inputBx" >
+					<input type="submit" value= "Login" name="">
+				</div>
+				<div class="inputBx" >
+					<p>Don't have an account?
+					<a href="{% url 'home' %} " style=" color: #006eff;">Sign-up</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
+
+</section>
+
+</div>
+
+
+<script>
+        function myFunction1() {
+                        var x = document.getElementById("myInput");
+                        if (x.type === "password") {
+                        x.type = "text";
+                        } else {
+                        x.type = "password";
+                        }
+                    }
+        function myFunction() {
+          var x = document.getElementById("myTopnav");
+          if (x.className === "topnav") {
+            x.className += " responsive";
+          } else {
+            x.className = "topnav";
+          }
+        }
+</script>
+{% endblock content %}

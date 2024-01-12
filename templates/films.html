@@ -1,0 +1,120 @@
+{% extends 'base_page/base.html' %}
+{% block content %}
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<style>
+    .content-wrapper h2 {
+        margin-top:80px ;
+        text-align: center;
+    }
+    .content-wrapper p{
+        margin-top: 20px;
+        line-height: 35px;
+    }
+
+    .video-shoot{
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .video-shoot .film{
+        height: 15rem;
+        width: 25rem;
+        margin: 2rem;
+        overflow: hidden;
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .7);
+
+    }
+    .video-shoot .film video{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        outline: none;
+        border: none;
+        cursor: pointer;
+    }
+
+    .films_container .video-shoot .film video:hover{
+        transition: .4s linear;
+        transform: scale(1.05); 
+    }
+
+    .films_container .video-shoot .film {
+    transition: 0.5s ease-out 100ms;
+
+    }
+
+    .films_container .video-shoot .film .active{
+        position: fixed;
+        top: 50%; left: 50%;
+        transform: translate(-50%,-50%);
+        height: auto;
+        width: 80%;
+        box-shadow: 0 0 0 100vh rgba(0, 0, 0, .7);
+        z-index: 1;
+    }
+
+    .films_container .video-shoot .film .active:hover{
+        transition: none;
+        transform: translate(-50%,-50%) scale(1);
+    }
+
+</style>
+<div class="content-wrapper">
+    <h2>Films</h2>
+    <p>Add a little bit of spice to your life with a bit of help from these creative films. If you're getting married, we'll follow your love story and pick the best bits and pieces that bring it to life with a beautifully edited pre-nuptials video that will set off happy tears when you watch it again on your anniversary. Not only that, we also have birthday and debut videos that capture your moments, which become stories and are covered in memories. Our work is about capturing memories to last a lifetime. Light is everything in photography and videography; it's everything. But when do you put the two together? Magic happens.</p>
+
+    <div class="films_container">
+
+        <div class="video-shoot">
+            <div class="film">
+          
+                <video controls poster="/static/videos/Films/Thumbnail/Edcel-Cristine-Prenup-Thumbnail.jpg" src="/static/videos/Films/Dawn Edcel and Cristine (Prenup Video).mp4" width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video controls poster="/static/videos/Films/Thumbnail/Daveson-Ruffa-Prenup-Thumbnail.jpg" src="/static/videos/Films/Daveson and Ruffa STD.mp4" width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video  controls poster="/static/videos/Films/Thumbnail/Chelsea-Predebut-Thumbnail.jpg" src="/static/videos/Films/Chelsea Predebut Teaser.mp4"width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video  controls poster="/static/videos/Films/Thumbnail/Larina-Predebut-Thumbnail.jpg" src="/static/videos/Films/Larina at 18 (Pre Debut Film).mp4"width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video  controls poster="/static/videos/Films/Thumbnail/Ishi18-Thumbnail.jpg" src="/static/videos/Films/Ishi - Debut Highlights.mp4" width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video  controls poster="/static/videos/Films/Thumbnail/Nicole-Debut-Thumbnail.jpg" src="/static/videos/Films/Nicole at 18 (Debut Highlights Films).mp4" width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video  controls poster="/static/videos/Films/Thumbnail/Nicole18-Debut.jpg" src="/static/videos/Films/Nicole Debut Highlights.mp4" width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video  controls poster="/static/videos/Films/Thumbnail/Leonida70-Thumbnail.jpg" src="/static/videos/Films/Nay Leonida 70th Birthday.mp4" width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video  controls poster="/static/videos/Films/Thumbnail/Julia-prebirthday-Thumbnail.jpg" src="/static/videos/Films/Julia Turns 7 Video.mp4" width="100%" type="video/mp4"></video>
+            </div>
+            <div class="film">
+                <video  controls poster="/static/videos/Films/Thumbnail/Silab2022-Basketball-Thumbnail.JPG" src="/static/videos/Films/Sta. Ines Basketball Opening.mp4" width="100%" type="video/mp4"></video>
+            </div>
+        </div> 
+    </div>
+    <script>
+        var film = document.querySelectorAll('video')
+
+        film.forEach(play => play.addEventListener('click', () =>{
+            
+            play.classList.toggle('active');
+
+            if(play.paused){
+                play.play();
+            }else{
+                play.pause();
+                play.curretTime = 0;
+            }
+        }));
+    </script>  
+</div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+{% endblock content%}

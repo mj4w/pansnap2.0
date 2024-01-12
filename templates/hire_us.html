@@ -1,43 +1,2015 @@
-{%extends "home.html"%}
-{%block content%}
+{% extends 'base_page/base.html' %}
+{% block content%}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<!-- Font Awesome CSS -->
+<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.3.1/css/all.css'>
 <!-- Hire US Form -->
-<div class="content-wrapper" id="hire_us">
-    <h2>Make an Appointment</h2>
-    <p>To register, complete this form carefully. Once the reservation is submitted, wait for the confirmation through calls or messages. 
-    </p>
-    <form method="post">
+<style>
+
+
+main {
+  text-align: center;
+  margin:15% auto;
+}
+main h1 {
+    font-family: 'Rubik', sans-serif, cursive;
+    font-size: 4rem;
+    color: #FFDF00;
+    margin-bottom: 1rem;
+}
+main p {
+  margin-bottom: 2.5rem;
+  font-family: 'Rubik', sans-serif;
+}
+main p em {
+  font-style: italic;
+  color: #FFDF00;
+}
+main button {
+  font-family: "Fontdiner Swanky", cursive;
+  font-size: 1rem;
+  color: #383838;
+  border: none;
+  background-color:skyblue;
+  padding: 1rem 2.5rem;
+  transform: skew(-5deg);
+  transition: all 0.1s ease;
+  border: none;
+  cursor: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/4424790/cursors-eye.png"), auto;
+}
+main button:hover {
+  background-color: #FFDF00;
+  transform: scale(1.15);
+}
+
+@media (max-width: 700px) {
+
+
+
+  aside {
+    background-image: none;
+    background-color: white;
+  }
+  aside img {
+    max-width: 300px;
+  }
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: 400px;
+  }
+  .modal-dialog .modal-content {
+    padding: 1rem;
+  }
+}
+.modal-header .close {
+  margin-top: -1.5rem;
+}
+
+.form-title {
+  margin: -2rem 0rem 2rem;
+}
+
+
+.delimiter {
+  padding: 1rem;
+}
+
+.social-buttons .btn {
+  margin: 0 0.5rem 1rem;
+}
+
+.signup-section {
+  padding: 0.3rem 0rem;
+
+}
+
+/* reservation style */
+
+/*Background color*/
+#grad1 {
+    margin-top: 50px;
+    background: rgb(0,49,74);
+		background: linear-gradient(0deg, rgba(0,49,74,1) 0%, rgba(0,105,133,1) 48%, rgba(0,165,204,1) 100%);
+}
+
+/*form styles*/
+#msform {
+    text-align: center;
+    position: relative;
+    margin-top: 10px;
+}
+
+#msform fieldset .form-card {
+    background: white;
+    border: 0 none;
+    border-radius: 0px;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px 40px 30px 40px;
+    box-sizing: border-box;
+    width: 94%;
+    margin: 0 3% 20px 3%;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+#msform fieldset {
+    background: #0e2c40;
+    border: 0 none;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+
+    /*stacking fieldsets above each other*/
+    position: relative;
+}
+
+/*Hide all except first fieldset*/
+#msform fieldset:not(:first-of-type) {
+    display: none;
+}
+
+#msform fieldset .form-card {
+    text-align: left;
+    color: #9E9E9E;
+}
+
+#msform input, #msform textarea {
+    padding: 0px 8px 4px 8px;
+    border: none;
+    border-bottom: 1px solid skyblue;
+    border-radius: 0px;
+    margin-bottom: 25px;
+    margin-top: 2px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 16px;
+    letter-spacing: 1px;
+}
+
+#msform input:focus, #msform textarea:focus {
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: none;
+    font-weight: bold;
+    border-bottom: 2px solid skyblue;
+    outline-width: 0;
+}
+
+/*Blue Buttons*/
+#msform .action-button {
+    width: 100px;
+    background: skyblue;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px skyblue;
+}
+
+/*Previous Buttons*/
+#msform .action-button-previous {
+    width: 100px;
+    background: #616161;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 0px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+
+#msform .action-button-previous:hover, #msform .action-button-previous:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #616161;
+}
+
+/*Dropdown List Exp Date*/
+select.list-dt {
+    border: none;
+    outline: 0;
+    border-bottom: 1px solid #ccc;
+    padding: 2px 5px 3px 5px;
+    margin: 2px;
+}
+
+select.list-dt:focus {
+    border-bottom: 2px solid skyblue;
+}
+
+/*The background card*/
+.card {
+    z-index: 0;
+    border: none;
+    border-radius: 0.5rem;
+    position: relative;
+}
+
+/*FieldSet headings*/
+.fs-title {
+    font-size: 25px;
+    color: #2C3E50;
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left;
+}
+
+/*progressbar*/
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+}
+
+#progressbar .active {
+    color:  #006eff;
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 12px;
+    width: 25%;
+    float: left;
+    position: relative;
+}
+
+/*Icons in the ProgressBar*/
+#progressbar #account:before {
+    font-family: FontAwesome;
+    content: "\f007";
+}
+
+#progressbar #personal:before {
+    font-family: FontAwesome;
+    content: "\f02D";
+}
+
+#progressbar #payment:before {
+    font-family: FontAwesome;
+    content: "\f129";
+}
+
+#progressbar #confirm:before {
+    font-family: FontAwesome;
+    content: "\f2c1";
+}
+
+/*ProgressBar before any progress*/
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 18px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px;
+}
+
+/*ProgressBar connectors*/
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: -1;
+}
+
+/*Color number of the step and the connector before it*/
+#progressbar li.active:before, #progressbar li.active:after {
+    background:  #006eff;
+}
+
+/*Imaged Radio Buttons*/
+.radio-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.radio {
+    display:inline-block;
+    width: 204;
+    height: 104;
+    border-radius: 0;
+    background: lightblue;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    cursor:pointer;
+    margin: 8px 2px; 
+}
+
+.radio:hover {
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.radio.selected {
+    box-shadow: 1px 1px 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+/*Fit image in bootstrap div*/
+.fit-image{
+    width: 100%;
+    object-fit: cover;
+}
+.shoot{
+  position: relative;
+
+}
+.shoot input{
+  display: inline-block;
+  width: 1.5rem;
+  position: relative;
+  height: 1.5rem;
+}
+.shoot span{
+  float: left;
+}
+#checklist {
+  --background: #ffffff;
+  --text: #414856;
+  --check: #4F29F0;
+  --disabled: #C3C8DE;
+  --width: 100px;
+  --height: 140px;
+  --border-radius: 10px;
+  background: var(--background);
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+  position: relative;
+  box-shadow: 0 10px 30px rgba(65, 72, 86, 0.05);
+  padding: 30px 45px;
+  display: grid;
+  grid-template-columns: 30px auto;
+  align-items: center;
+}
+#checklist label {
+  color: var(--text);
+  position: relative;
+  cursor: pointer;
+  display: grid;
+  align-items: center;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  transition: color 0.3s ease;
+}
+#checklist label::before, #checklist label::after {
+  content: "";
+  position: absolute;
+}
+
+#checklist input[type=checkbox] {
+  
+  position: relative;
+  height: 15px;
+  width: 15px;
+  outline: none;
+  border: 0;
+  margin: 0 15px 0 0;
+  cursor: pointer;
+  background: var(--background);
+  display: grid;
+  align-items: center;
+}
+
+#checklist input[type=checkbox]::before {
+  width: 0px;
+  right: 60%;
+  transform-origin: right bottom;
+}
+#checklist input[type=checkbox]::after {
+  width: 0px;
+  left: 40%;
+  transform-origin: left bottom;
+}
+#checklist input[type=checkbox]:checked::before {
+  -webkit-animation: check-01 0.4s ease forwards;
+          animation: check-01 0.4s ease forwards;
+}
+#checklist input[type=checkbox]:checked::after {
+  -webkit-animation: check-02 0.4s ease forwards;
+          animation: check-02 0.4s ease forwards;
+}
+#checklist input[type=checkbox]:checked + label {
+  color: var(--disabled);
+  -webkit-animation: move 0.3s ease 0.1s forwards;
+          animation: move 0.3s ease 0.1s forwards;
+}
+#checklist input[type=checkbox]:checked + label::before {
+  background: var(--disabled);
+  -webkit-animation: slice 0.4s ease forwards;
+          animation: slice 0.4s ease forwards;
+}
+#checklist input[type=checkbox]:checked + label::after {
+  -webkit-animation: firework 0.5s ease forwards 0.1s;
+          animation: firework 0.5s ease forwards 0.1s;
+}
+
+body .socials {
+  position: fixed;
+  display: block;
+  left: 20px;
+  bottom: 20px;
+}
+body .socials > a {
+  display: block;
+  width: 30px;
+  opacity: 0.2;
+  transform: scale(var(--scale, 0.8));
+  transition: transform 0.3s cubic-bezier(0.38, -0.12, 0.24, 1.91);
+}
+body .socials > a:hover {
+  --scale: 1;
+}
+#scroll {
+  background: #eee;
+  height: 400px;
+  width: 400px;
+  overflow-y: scroll;
+}
+#scroll-card{
+  background: #eee;
+  height: 550px;
+  width: 400px;
+  overflow-y: scroll;
+}
+
+</style>
+
+{% if user.is_authenticated %}
+<!-- MultiStep Form -->
+<div class="container-fluid" id="grad1" >
+  <div class="row justify-content-center mt-0">
+      <div class="col-11 col-sm-9 col-md-7 col-lg-6 text-center p-0 mt-3 mb-2">
+          <div class="card px-0 pt-4 pb-0 mt-3 mb-3" style="background-color:#0e2c40;">
+              <h2 style="color:#FFDF00"><strong>Reservation Form</strong></h2>
+              <p  style="color: white;">Fill all form field to go to next step</p>
+              <div class="row">
+                  <div class="col-md-12 mx-0">
+                      <div id="msform">
+                          <!-- progressbar -->
+                          <ul id="progressbar">
+                              <li class="active" id="account"><strong>Information</strong></li>
+                              <li id="personal"><strong>Reservation</strong></li>
+                              <li id="payment"><strong>Details</strong></li>
+                          
+                              <li id="confirm"><strong>Identification</strong></li>
+            
+                          </ul>
+                      
+                          <!-- fieldsets -->
+                          
+                        
+                          <fieldset>
+                           
+                              <div class="form-card" id="scroll">
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+        <h2 class="fs-title">Client's Information</h2>
+        <input type="text" name="firstname" id="firstname"  placeholder="First Name"/>
+        <input type="text" name="lastname" id="lastname"  placeholder="Last Name"/>
+        <input type="email" name="email" id="email" placeholder="Email Address"/>
+        <input type="number" name="contact_number_reserve" id="contact_number" placeholder="Contact Number"/>
+        <input type="text" name="facebook_url"  id="facebook_url" placeholder="Facebook URL"/>
+        <input type="text" name="street_number"  id="street_number" placeholder="House number & Street"/>
+        <input type="text" name="baranggay"  id="baranggay" placeholder="Baranggay"/>
+        <input type="number" name="zip_code"  id="zipcode" placeholder="Zip Code"/>
+        <input type="text" name="municipality"  id="municipality" placeholder="Municipality/City "/>
+        <input type="text" name="province"  id="province" placeholder="Province"/>
+
+
+        <!-- <textarea name="" placeholder="Event Complete Address"></textarea> -->
+      </div>
+
+
+      <input type="button" name="next" class="next action-button" value="Next Step" style="color: #0e2c40; background-color: #FFDF00; border-radius: 10px;"/>
+
+
+
+      </fieldset>
+
+      <fieldset>
+
+
+      <div class="form-card"  id="scroll-card">
+
+          <h2 class="fs-title">Make a Reservation </h2>
+          <p style="color: #0e2c40; font-weight: bolder; font-size: 12px;"></p>
+          <button type="reset" style="border-color:#006eff; margin-bottom: 20px;">Unselect All</button>
+          <br>
+          <div class="shoot">
+            <span>
+              
+              <center>
+                <p style="color: #0e2c40; font-weight: bolder;">Indoor Shoot</p><input type="radio" checked value1="one" name="indoor" class="ra radio-but" value="Indoor Shoot" >
+                <p style="color: #0e2c40; font-weight: bolder;">Outdoor Shoot</p><input type="radio" value1="two"  class="ra radio-but" name="outdoor" value="Outdoor Shoot" />
+              
+                <div  style="position: absolute; margin-left: -30px; ">
+                  <span><b style="color:#0e2c40; font-size: 15px; ">Couldn't find the right service/s for you?<br> Please tell us your idea</b><textarea placeholder="Comments/Request" name="comment_request" style="resize: none;"></textarea></span>
+      
+                </div>
+                <style>
+                  .grid-span{
+                  
+                    flex-basis: 20%;
+                    min-width:150px;
+                  }
+                  .abso {
+                    position: absolute;
+                    margin-top: 150px;
+                    width: 100%;
+                    margin-top: 300px;
+                    margin-left: -850px;
+                    
+                  }
+                  .packall{
+                    margin-top: 500px;
+                    margin-left: -430px;
+                  }
+
+                  .selects{
+                    
+                    width: 100px;
+                  
+                    background-color: #006eff;
+                    color: white;
+                    border: none;
+                  }
+                  .all {
+                    margin-left: -50px;
+                  }
+                  .adjust{
+                    margin-right: -3rem;
+                    
+                  }
+                  .edit{
+                    position: relative;
+                    padding: 20px 0;
+                    display: flex;
+                  }
+                  .rad input{
+                    display: block;
+                    position: relative;
+                    margin-left: 50px;
+                    margin-top: 50px;
+
+                  }
+                  .p{
+                    position: absolute;
+                    top: 85.5%;
+                    margin-left: 50px;
+                  }
+                  .pp{
+                    position: absolute;
+                    top: 90.5%;
+                    margin-left: 50px;
+                  }
+
+          
+                </style>
+              
+              </center> 
+          
+            
+            </span>
+
+          </div>
+
+          <div class="box boxes one" >
+            <div id="checklist" style="white-space:nowrap; margin-top: -100px; margin-left: 170px;">
+              
+              <input id="01" type="radio"  name="wedding_pre_nuptial" class="r radio-select checkall  clickradio"  value="Wedding Pre-nuptial" value1="select1" onchange="changed()""/>
+              <label for="01" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Wedding Pre-nuptial</label>
+              <input id="02" type="radio"  name="pre-debut"  class="r checkall radio-select clickradio" value="Pre-debut" value1="select2"  onchange="changed()"/>
+              <label for="02" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Pre-debut</label>
+              <input id="03" type="radio"  name="toddler" class="r checkall radio-select  clickradio" value="Toddler" value1="select3" onchange="changed()">
+              <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Toddler</label>
+              <input id="03" type="radio"  name="pre-birthday" class="r checkall radio-select clickradio" value="Pre-birthday" value1="select4" onchange="changed()">
+              <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Pre-birthday</label>
+              <input id="03" type="radio"  name="maternity" class="r checkall radio-select clickradio" value="Maternity" value1="select5" onchange="changed()">
+              <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Maternity</label>
+              <input id="03" type="radio"  name="family_portrait" class="r checkall radio-select clickradio" value="Family Portrait" value1="select6" onchange="changed()">
+              <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Family Portrait</label>
+              <input id="03" type="radio"  name="graduation_photo"  class="r checkall radio-select  clickradio" value="Graduation Photo" value1="select7" onchange="changed()">
+              <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Graduation Photo</label>
+              <input id="03" type="radio" name="barkada_shoot"  class="r checkall radio-select  clickradio" value="Barkada Shoot" value1="select8" onchange="changed()">
+              <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Barkada Shoot</label>
+
+                                    
+
+            </div>
+
+
+
         
-        <p class="formfields">
-            <label>Name</label>
-            <input type="text" name="yourname" value="" placeholder="Enter your Name">
-        </p>
-        <p class="formfields">
-            <label>Email</label>
-            <input type="email" name="youremail" value="" placeholder="Enter your email">
-        </p>
-        <p class="formfields">
-            <label>Contact Number</label>
-            <input type="text" name="yournumber" value="" placeholder="Enter your contact number">
-        </p>
-        <p class="formfields">
-            <label>Complete Address</label>
-            <input type="text" name="youraddress" value="" placeholder="Enter your address">
-        </p>
-        <p class="formfields">
-            <label>Event</label>
-            <input type="text" name="yourevent" value="" placeholder="What kind of event?">
-        </p>
-        <p class="formfields">
-            <label>Package</label>
-            <textarea type="text" name="yourpackage" value="" placeholder="List down the package and other details"></textarea> 
-        </p>
-        <p class="formfields">
-            <input type="checkbox" name="confirm" value="yes">
-            All of your information are correct?
-        </p>
-        <p class="formfields">
-            <input type="submit" value="Submit">
-        </p>
-    </form>
+      <center>
+
+      <div class="edit abso select select1" style="display: none;">
+
+      <style>
+      /* HIDE RADIO */
+      .labelers [type=radio] { 
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+      }
+
+      /* IMAGE STYLES */
+      .labelers [type=radio] + img {
+      cursor: pointer;
+      }
+
+      /* CHECKED STYLES */
+      .labelers [type=radio]:checked + img {
+      outline: 4px solid #006eff;
+
+
+      }
+      .labelers img {
+      width: 400px;
+      height:120px;
+      border-radius: 2px;
+
+      }
+      .parent{
+      position: relative;
+      height: auto;
+      margin-left: 90px;
+      }
+
+
+      </style>
+
+      <div class="parent" >
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels radio-pack" name="wedding_package1" value="Package 1">
+      <img src="/static/images/packages/package/prenup-studio.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels radio-pack" name="wedding_package2" value="Package 2">
+      <img  src="/static/images/packages/package/prenup-studio (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels radio-pack" name="wedding_package3" value="Package 3">
+      <img  src="/static/images/packages/package/prenup-studio (3).png" alt="Option 3">
+      </label>
+      </div>
+      <div class="package value1 value2 value3" style="display: none;" >
+      <input type="checkbox" value="Additional/Extras" name="additional" style="width: 1rem; position: absolute; top: 92%; margin-top: 20px; margin-left: -320px;" class="packaged3" onclick="package3()" /> <p style=" position: absolute; top: 91%; margin-left: -300px; margin-top: 20px;">Additionals/Extras</p>
+      </div>
+
+      <div class="packall pack3 adjust" style="display:none;">
+      <div class="all">
+      <span>
+      <h6>Printed Photo</h6>
+      <select class="selects" name="selection1" style="float:left;">
+
+      <option value="">Select</option>
+      <option value="5x7">5x7</option>
+      <option value="8x10">8x10</option>
+      <option value="11x14">11x14</option>
+      </select>
+      </span>
+
+      <div class="" style="white-space: nowrap;">
+      <input type="checkbox" name="flashdrive" value="Flash Drive File Storage" style="position: relative; left: -5%;"><b style="margin-left: -70px;"> Flash Drive File Storage</b>   
+      </div>
+      <div class="radio-yn" style="white-space:nowrap; float:left; align-items: center; justify-content: center; margin: 0 auto;">
+      <h6>Photo Frame</h6>
+      <div class="rad">
+      <input type="radio" name="yes" value="Yes"class="y" ><p class="p">Yes</p>
+      <input type="radio" name="no" value="No"class="y" ><p class="pp">No</p>
+      </div>
+      </div>
+      </div>
+
+      </div>
+      <script>
+      function package3() {
+      if($('.packaged3').is(":checked"))   
+      $(".pack3").show();
+      else
+      $(".pack3").hide();
+      };
+      </script>
+
+      </div>
+      </center>
+      <!---------------------------ANSWEEEEEEEEEEEEEEEEEEEEEEEEEEEER 1-->
+      <center>
+      <div class="edit abso select2 select" style="display: none;">
+
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels radio-pack" name="debut_package1" value="Package 1">
+      <img src="/static/images/packages/package/Pre-debut Studio Shoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels radio-pack" name="debut_package2" value="Package 2">
+      <img src="/static/images/packages/package/Pre-debut Studio Shoot (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels radio-pack" name="debut_package3" value="Package 3">
+      <img src="/static/images/packages/package/Pre-debut Studio Shoot (3).png" alt="Option 3">
+      </label>
+      </div>
+      <!-- <span class="grid-span"><input type="radio" value1="value1" class="radio-pack" name="delivery_option2 test">PACKAGE 1<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1000</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 5px; ">1 Outfit <br> 20-30 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value2" class="radio-pack" name="delivery_option2 test">PACKAGE 2<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1300</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px;">2 Outfit <br> 30-40 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value3" class="radio-pack" name="delivery_option2 test">PACKAGE 3<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1500</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">3 Outfit <br> 40-50 ENHANCED PHOTOS</p></span> -->
+      <div class="package value1 value2 value3" style="display: none;" >
+      <input type="checkbox" value="Additional/Extras" name="additional" style="width: 1rem; position: absolute; top: 92%; margin-top: 20px; margin-left: -320px;" class="packaged4" onclick="package4()" /> <p style=" position: absolute; top: 91%; margin-left: -300px; margin-top: 20px;">Additionals/Extras</p>
+      </div>
+
+      <div class="packall pack4 adjust" style="display:none;">
+      <div class="all">
+      <span>
+      <h6>Printed Photo</h6>
+      <select class="selects" name="selection2" style="float:left;">
+
+      <option value="">Select</option>
+      <option value="5x7">5x7</option>
+      <option value="8x10">8x10</option>
+      <option value="11x14">11x14</option>
+      </select>
+      </span>
+
+      <div class="" style="white-space: nowrap;">
+      <input type="checkbox" name="flashdrive" value="Flash Drive File Storage" style="position: relative; left: -5%;"><b style="margin-left: -70px;"> Flash Drive File Storage</b>   
+      </div>
+      <div class="radio-yn" style="white-space:nowrap; float:left; align-items: center; justify-content: center; margin: 0 auto;">
+      <h6>Photo Frame</h6>
+      <div class="rad">
+      <input type="radio" name="yes" value="Yes"class="y" ><p class="p">Yes</p>
+      <input type="radio" name="no" value="No"class="y" ><p class="pp">No</p>
+      </div>
+      </div>
+      </div>
+
+      </div>
+      <script>
+      function package4() {
+      if($('.packaged4').is(":checked"))   
+      $(".pack4").show();
+      else
+      $(".pack4").hide();
+      };
+      </script>
+
+
+      </div>
+      </center>
+      <!---------------------------ANSWEEEEEEEEEEEEEEEEEEEEEEEEEEEER 2-->
+      <center>
+      <div class="edit abso select3 select" style="display: none;">
+
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels radio-pack" name="toddler_package1" value="Package 1">
+      <img src="/static/images/packages/package/Toddler Studio Photoshoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels radio-pack" name="toddler_package2" value="Package 2">
+      <img src="/static/images/packages/package/Toddler Studio Photoshoot (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels radio-pack" name="toddler_package3" value="Package 3">
+      <img src="/static/images/packages/package/Toddler Studio Photoshoot (3).png" alt="Option 3">
+      </label>
+      </div>
+
+      <!-- <span class="grid-span"><input type="radio" value1="value1" class="radio-pack" name="delivery_option2 test">PACKAGE 1<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1000</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 5px; ">1 Outfit <br> 20-30 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value2" class="radio-pack" name="delivery_option2 test">PACKAGE 2<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1300</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px;">2 Outfit <br> 30-40 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value3" class="radio-pack" name="delivery_option2 test">PACKAGE 3<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1500</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">3 Outfit <br> 40-50 ENHANCED PHOTOS</p></span> -->
+      <div class="package value1 value2 value3" style="display: none;" >
+      <input type="checkbox" value="Additional/Extras" name="additional" style="width: 1rem; position: absolute; top: 92%; margin-top: 20px; margin-left: -320px;" class="packaged5" onclick="package5()" /> <p style=" position: absolute; top: 91%; margin-left: -300px; margin-top: 20px;">Additionals/Extras</p>
+      </div>
+
+      <div class="packall pack5 adjust" style="display:none;">
+      <div class="all">
+      <span>
+      <h6>Printed Photo</h6>
+      <select class="selects" name="selection3" style="float:left;">
+
+      <option value="">Select</option>
+      <option value="5x7">5x7</option>
+      <option value="8x10">8x10</option>
+      <option value="11x14">11x14</option>
+      </select>
+      </span>
+
+      <div class="" style="white-space: nowrap;">
+      <input type="checkbox" name="flashdrive" value="Flash Drive File Storage" style="position: relative; left: -5%;"><b style="margin-left: -70px;"> Flash Drive File Storage</b>   
+      </div>
+      <div class="radio-yn" style="white-space:nowrap; float:left; align-items: center; justify-content: center; margin: 0 auto;">
+      <h6>Photo Frame</h6>
+      <div class="rad">
+      <input type="radio" name="yes" value="Yes"class="y" ><p class="p">Yes</p>
+      <input type="radio" name="no" value="No" class="y"><p class="pp">No</p>
+      </div>
+      </div>
+      </div>
+
+      </div>
+      <script>
+      function package5() {
+      if($('.packaged5').is(":checked"))   
+      $(".pack5").show();
+      else
+      $(".pack5").hide();
+      };
+      </script>
+
+      </div>
+
+      </center>
+
+      <!---------------------------ANSWEEEEEEEEEEEEEEEEEEEEEEEEEEEER 3-->
+      <center>
+      <div class="edit abso select4 select" style="display: none;">
+
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels radio-pack" name="pre_birthday_package1" value="Package 1">
+      <img src="/static/images/packages/package/Pre-Birthday_Casual Studio Photoshoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels radio-pack" name="pre_birthday_package2" value="Package 2">
+      <img src="/static/images/packages/package/Pre-Birthday_Casual Studio Photoshoot (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels radio-pack" name="pre_birthday_package3" value="Package 3">
+      <img src="/static/images/packages/package/Pre-Birthday_Casual Studio Photoshoot (3).png" alt="Option 3">
+      </label>
+      </div>
+
+      <!-- <span class="grid-span"><input type="radio" value1="value1" class="radio-pack" name="delivery_option2 test">PACKAGE 1<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1000</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 5px; ">1 Outfit <br> 20-30 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value2" class="radio-pack" name="delivery_option2 test">PACKAGE 2<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1300</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px;">2 Outfit <br> 30-40 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value3" class="radio-pack" name="delivery_option2 test">PACKAGE 3<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1500</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">3 Outfit <br> 40-50 ENHANCED PHOTOS</p></span> -->
+      <div class="package value1 value2 value3" style="display: none;" >
+      <input type="checkbox" value="Additional/Extras" name="additional" style="width: 1rem; position: absolute; top: 92%; margin-top: 20px; margin-left: -320px;" class="packaged6" onclick="package6()" /> <p style=" position: absolute; top: 91%; margin-left: -300px; margin-top: 20px;">Additionals/Extras</p>
+      </div>
+
+      <div class="packall pack6 adjust" style="display:none;">
+      <div class="all">
+      <span>
+      <h6>Printed Photo</h6>
+      <select class="selects" name="selection4" style="float:left;">
+
+      <option value="">Select</option>
+      <option value="5x7">5x7</option>
+      <option value="8x10">8x10</option>
+      <option value="11x14">11x14</option>
+      </select>
+      </span>
+
+      <div class="" style="white-space: nowrap;">
+      <input type="checkbox" name="flashdrive" value="Flash Drive File Storage" style="position: relative; left: -5%;"><b style="margin-left: -70px;"> Flash Drive File Storage</b>   
+      </div>
+      <div class="radio-yn" style="white-space:nowrap; float:left; align-items: center; justify-content: center; margin: 0 auto;">
+      <h6>Photo Frame</h6>
+      <div class="rad">
+      <input type="radio" name="yes" value="Yes"class="y" ><p class="p">Yes</p>
+      <input type="radio" name="no" value="No"class="y" ><p class="pp">No</p>
+      </div>
+      </div>
+      </div>
+
+      </div>
+      <script>
+      function package6() {
+      if($('.packaged6').is(":checked"))   
+      $(".pack6").show();
+      else
+      $(".pack6").hide();
+      };
+      </script>
+
+
+      </div>
+      </center>
+
+      <!---------------------------ANSWEEEEEEEEEEEEEEEEEEEEEEEEEEEER 4-->
+      <center>
+      <div class="edit abso select5 select"  style="display: none;">
+
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels radio-pack" name="maternity_package1" value="Package 1">
+      <img src="/static/images/packages/package/Maternity - Studio Photoshoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels radio-pack" name="maternity_package2" value="Package 2">
+      <img src="/static/images/packages/package/Maternity - Studio Photoshoot (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels radio-pack" name="maternity_package3" value="Package 3">
+      <img src="/static/images/packages/package/Maternity - Studio Photoshoot (3).png" alt="Option 3">
+      </label>
+      </div>
+
+      <!-- <span class="grid-span"><input type="radio" value1="value1" class="radio-pack" name="delivery_option2 test">PACKAGE 1<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1000</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 5px; ">1 Outfit <br> 20-30 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value2" class="radio-pack" name="delivery_option2 test">PACKAGE 2<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1300</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px;">2 Outfit <br> 30-40 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value3" class="radio-pack" name="delivery_option2 test">PACKAGE 3<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1500</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">3 Outfit <br> 40-50 ENHANCED PHOTOS</p></span> -->
+      <div class="package value1 value2 value3" style="display: none;" >
+      <input type="checkbox" value="Additional/Extras" name="additional" style="width: 1rem; position: absolute; top: 92%; margin-top: 20px; margin-left: -320px;" class="packaged7" onclick="package7()" /> <p style=" position: absolute; top: 91%; margin-left: -300px; margin-top: 20px;">Additionals/Extras</p>
+      </div>
+
+      <div class="packall pack7 adjust" style="display:none;">
+      <div class="all">
+      <span>
+      <h6>Printed Photo</h6>
+      <select class="selects" name="selection5" style="float:left;">
+
+      <option value="">Select</option>
+      <option value="5x7">5x7</option>
+      <option value="8x10">8x10</option>
+      <option value="11x14">11x14</option>
+      </select>
+      </span>
+
+      <div class="" style="white-space: nowrap;">
+      <input type="checkbox" name="flashdrive" value="Flash Drive File Storage" style="position: relative; left: -5%;"><b style="margin-left: -70px;"> Flash Drive File Storage</b>   
+      </div>
+      <div class="radio-yn" style="white-space:nowrap; float:left; align-items: center; justify-content: center; margin: 0 auto;">
+      <h6>Photo Frame</h6>
+      <div class="rad">
+      <input type="radio" name="yes" value="Yes"class="y" ><p class="p">Yes</p>
+      <input type="radio" name="no" value="No" class="y"><p class="pp">No</p>
+      </div>
+      </div>
+      </div>
+
+      </div>
+      <script>
+      function package7() {
+      if($('.packaged7').is(":checked"))   
+      $(".pack7").show();
+      else
+      $(".pack7").hide();
+      };
+      </script>
+
+
+      </div>
+      </center>
+
+      <!---------------------------ANSWEEEEEEEEEEEEEEEEEEEEEEEEEEEER 5-->
+      <center>
+      <div class="edit abso select6 select" style="display: none;">
+
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels radio-pack" name="family_portrait_package1" value="Package 1">
+      <img src="/static/images/packages/package/Family Portrait.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels radio-pack" name="family_portrait_package2" value="Package 2">
+      <img src="/static/images/packages/package/Family Portrait (2).png" alt="Option 2">
+      </label>
+      <!-- <label class="labelers">
+      <input  type="radio" value1="value3" class="labels radio-pack" name="family_portrait_package3" value="Package 3">
+      <img src="/static/images/packages/package/" alt="Option 3">
+      </label> -->
+      </div>
+
+      <!-- <span class="grid-span"><input type="radio" value1="value1" class="radio-pack" name="delivery_option2 test">PACKAGE 1<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1000</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 5px; ">1 Outfit <br> 20-30 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value2" class="radio-pack" name="delivery_option2 test">PACKAGE 2<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1300</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px;">2 Outfit <br> 30-40 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value3" class="radio-pack" name="delivery_option2 test">PACKAGE 3<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1500</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">3 Outfit <br> 40-50 ENHANCED PHOTOS</p></span> -->
+      <div class="package value1 value2 value3" style="display: none;" >
+      <input type="checkbox" value="Additional/Extras" name="additional" style="width: 1rem; position: absolute; top: 92%; margin-top: 20px; margin-left: -320px;" class="packaged8" onclick="package8()" /> <p style=" position: absolute; top: 91%; margin-left: -300px; margin-top: 20px;">Additionals/Extras</p>
+      </div>
+
+      <div class="packall pack8 adjust" style="display:none;">
+      <div class="all">
+      <span>
+      <h6>Printed Photo</h6>
+      <select class="selects" name="selection6" style="float:left;">
+
+      <option value="">Select</option>
+      <option value="5x7">5x7</option>
+      <option value="8x10">8x10</option>
+      <option value="11x14">11x14</option>
+      </select>
+      </span>
+
+      <div class="" style="white-space: nowrap;">
+      <input type="checkbox" name="flashdrive" value="Flash Drive File Storage" style="position: relative; left: -5%;"><b style="margin-left: -70px;"> Flash Drive File Storage</b>   
+      </div>
+      <div class="radio-yn" style="white-space:nowrap; float:left; align-items: center; justify-content: center; margin: 0 auto;">
+      <h6>Photo Frame</h6>
+      <div class="rad">
+      <input type="radio" name="yes" value="Yes" class="y"><p class="p">Yes</p>
+      <input type="radio" name="no" value="No"class="y"><p class="pp">No</p>
+      </div>
+      </div>
+      </div>
+
+      </div>
+      <script>
+      function package8() {
+      if($('.packaged8').is(":checked"))   
+      $(".pack8").show();
+      else
+      $(".pack8").hide();
+      };
+      </script>
+
+
+      </div>
+      </center>
+
+      <!---------------------------ANSWEEEEEEEEEEEEEEEEEEEEEEEEEEEER 6-->
+      <center>
+      <div class="edit abso select7 select" style="display: none;">
+
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels radio-pack" name="graduation_package1" value="Package 1">
+      <img src="/static/images/packages/package/Graduation Photoshoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels radio-pack" name="graduation_package2" value="Package 2">
+      <img src="/static/images/packages/package/Graduation Photoshoot (2).png" alt="Option 2">
+      </label>
+      <!-- <label class="labelers">
+      <input  type="radio" value1="value3" class="labels radio-pack" name="graduation_package3" value="Package 3">
+      <img src="/static/images/packages/Package3 Debut.png" alt="Option 3">
+      </label> -->
+      </div>
+
+      <!-- <span class="grid-span"><input type="radio" value1="value1" class="radio-pack" name="delivery_option2 test">PACKAGE 1<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1000</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 5px; ">1 Outfit <br> 20-30 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value2" class="radio-pack" name="delivery_option2 test">PACKAGE 2<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1300</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px;">2 Outfit <br> 30-40 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value3" class="radio-pack" name="delivery_option2 test">PACKAGE 3<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1500</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">3 Outfit <br> 40-50 ENHANCED PHOTOS</p></span> -->
+      <div class="package value1 value2 value3" style="display: none;" >
+      <input type="checkbox" value="Additional/Extras" name="additional" style="width: 1rem; position: absolute; top: 92%; margin-top: 20px; margin-left: -320px;" class="packaged9" onclick="package9()" /> <p style=" position: absolute; top: 91%; margin-left: -300px; margin-top: 20px;">Additionals/Extras</p>
+      </div>
+
+      <div class="packall pack9 adjust" style="display:none;">
+      <div class="all">
+      <span>
+      <h6>Printed Photo</h6>
+      <select class="selects" name="selection7" style="float:left;">
+
+      <option value="">Select</option>
+      <option value="5x7">5x7</option>
+      <option value="8x10">8x10</option>
+      <option value="11x14">11x14</option>
+      </select>
+      </span>
+
+      <div class="" style="white-space: nowrap;">
+      <input type="checkbox" name="flashdrive" value="Flash Drive File Storage" style="position: relative; left: -5%;"><b style="margin-left: -70px;"> Flash Drive File Storage</b>   
+      </div>
+      <div class="radio-yn" style="white-space:nowrap; float:left; align-items: center; justify-content: center; margin: 0 auto;">
+      <h6>Photo Frame</h6>
+      <div class="rad">
+      <input type="radio" name="yes" value="Yes" class="y" ><p class="p">Yes</p>
+      <input type="radio" name="no" value="No" class="y" ><p class="pp">No</p>
+      </div>
+      </div>
+      </div>
+
+      </div>
+      <script>
+      function package9() {
+      if($('.packaged9').is(":checked"))   
+      $(".pack9").show();
+      else
+      $(".pack9").hide();
+      };
+      </script>
+
+      </div>
+
+      </center>
+
+
+      <!---------------------------ANSWEEEEEEEEEEEEEEEEEEEEEEEEEEEER 7-->
+      <center>
+      <div class="edit abso select8 select" style="display: none;">
+
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels radio-pack" name="barkada_package1" value="Package 1">
+      <img src="/static/images/packages/package/Barkada Photoshoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels radio-pack" name="barkada_package2" value="Package 2">
+      <img src="/static/images/packages/package/Barkada Photoshoot (2).png" alt="Option 2">
+      </label>
+      <!-- <label class="labelers">
+      <input  type="radio" value1="value3" class="labels radio-pack" name="barkada_package3" value="Package 3">
+      <img src="/static/images/packages/Package3 Debut.png" alt="Option 3">
+      </label> -->
+      </div>
+
+      <!-- <span class="grid-span"><input type="radio" value1="value1" class="radio-pack" name="delivery_option2 test">PACKAGE 1<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1000</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 5px; ">1 Outfit <br> 20-30 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value2" class="radio-pack" name="delivery_option2 test">PACKAGE 2<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1300</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px;">2 Outfit <br> 30-40 ENHANCED PHOTOS</p></span>
+      <span class="grid-span"><input type="radio" value1="value3" class="radio-pack" name="delivery_option2 test">PACKAGE 3<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">PHP 1500</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 5px; ">3 Outfit <br> 40-50 ENHANCED PHOTOS</p></span> -->
+      <div class="package value1 value2 value3" style="display: none;" >
+      <input type="checkbox" value="Additional/Extras" name="additional" style="width: 1rem; position: absolute; top: 92%; margin-top: 20px; margin-left: -320px;" class="packaged10" onclick="package10()" /> <p style=" position: absolute; top: 91%; margin-left: -300px; margin-top: 20px;">Additionals/Extras</p>
+      </div>
+
+      <div class="packall pack10 adjust" style="display:none;">
+      <div class="all">
+      <span>
+      <h6>Printed Photo</h6>
+      <select class="selects" name="selection8" style="float:left;">
+
+      <option value="">Select</option>
+      <option value="5x7">5x7</option>
+      <option value="8x10">8x10</option>
+      <option value="11x14">11x14</option>
+      </select>
+      </span>
+
+      <div class="" style="white-space: nowrap;">
+      <input type="checkbox" name="flashdrive" value="Flash Drive File Storage" style="position: relative; left: -5%;"><b style="margin-left: -70px;"> Flash Drive File Storage</b>   
+      </div>
+      <div class="radio-yn" style="white-space:nowrap; float:left; align-items: center; justify-content: center; margin: 0 auto;">
+      <h6>Photo Frame</h6>
+      <div class="rad">
+      <input type="radio" name="yes" value="Yes"class="y" ><p class="p">Yes</p>
+      <input type="radio" name="no" value="No" class="y"><p class="pp">No</p>
+      </div>
+      </div>
+      </div>
+
+      </div>
+      <script>
+      function package10() {
+      if($('.packaged10').is(":checked"))   
+      $(".pack10").show();
+      else
+      $(".pack10").hide();
+      };
+      </script>
+
+      </div>
+
+      </center>
+      </div>
+      <h1  style="position: absolute; text-align:center; margin-left:90px; top:85%;" class="hide-text ">Select Services First</h1>
+
+      <div class="box boxes two" style="display: none;" >
+
+
+      <div id="checklist" style=" white-space:nowrap; margin-top: -100px; margin-left: 170px;">
+
+      <input id="03" type="radio" name="wedding" value="Wedding" class="r checkall radio-select  clickradio" value1="select9" onchange="changed()""/>
+      <label for="03"  style="margin-top: -15px;color: #0e2c40; font-weight: bolder; ">Wedding </label>
+      <input id="03" type="radio" name="debut" value="Debut" class="r checkall radio-select  clickradio" value1="select10" onchange="changed()"/>
+      <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Debut</label>
+      <input id="03" type="radio" name="baptismal" value="Baptismal" class="r checkall radio-select  clickradio" value1="select11" onchange="changed()">
+      <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Baptismal</label>
+      <input id="03" type="radio" name="birthday" value="Birthday" class="r checkall radio-select  clickradio" value1="select12" onchange="changed()">
+      <label for="03" style="margin-top: -15px; color: #0e2c40; font-weight: bolder;">Birthday</label>
+
+
+
+
+      </div>
+
+
+
+
+      <center>
+      <style>
+      .absolut {
+      position: absolute;
+      left: -10%;
+      top: 20rem;
+      }
+      .abs {
+      position: absolute;
+      left: -10%;
+      top: 1rem;
+      }
+      .edits {
+      position: relative;
+      padding: 20px 0;
+      display: flex;
+      }
+      </style>
+
+      <div class="edit absolut select select9"  style="display: none;">
+
+      <span class="grid-span" style="color: #0e2c40; font-weight: bolder;"><input type="radio" value1="value1" value="Church Wedding" name="church_wedding" class="radio-pack la">Church Wedding<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 100px; ">ㅤ</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 40%; ">ㅤ</p></span>
+      <span class="grid-span" style="color: #0e2c40; font-weight: bolder;"><input type="radio" value1="value2" value="Civil Wedding" name="civil_wedding" class="radio-pack la">Civil Wedding<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 100px; ">ㅤ</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 40%;">ㅤ</p></span>
+      <div class="package value1" style="display: none;">
+      <div style="position:relative; margin-left: -400px; margin-top:110px;">
+      <input type="radio" style="position: absolute;left: -27%; "  class="lb outdoors" value2="ones" value="Wedding Event" name="wedding_event"  /> <p  style="color: #0e2c40; font-weight: bolder;">Wedding Event</p>
+      <input type="radio" style="position: absolute;left: -27%; " class="lb outdoors" value2="twos" value="Wedding Pre-nuptial" name="prenup_outdoor" /> <p style="color: #0e2c40; font-weight: bolder;">Wedding Pre-nuptial</p>
+      </div>
+
+      <center>
+      <div class="edits abso ones outdoored" style="display: none; margin-top: 20px;">
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels" name="video_package" value="Photo Package">
+      <img src="/static/images/packages/package/Wedding Event Shoot (3).png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels" name="package_outdoor" value="Video Package">
+      <img src="/static/images/packages/package/Wedding Event Shoot (4).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels" name="package2_outdoor" value="Photo & Video Package">
+      <img src="/static/images/packages/package/Wedding Event Shoot (6).png" alt="Option 3">
+      </label>
+      </div>
+      </div>
+      </center>
+      <center>
+      <div class="edits abso twos outdoored" style="display: none; margin-top: 20px;">
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels" name="video_package2" value="Photo Package">
+      <img src="/static/images/packages/package/Pre-Nuptial Wedding Shoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels" name="photo_video" value="Video Package">
+      <img src="/static/images/packages/package/Pre-Nuptial Wedding Shoot (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels" name="photo_video_2" value="Photo and Video Package">
+      <img src="/static/images/packages/package/Pre-Nuptial Wedding Shoot (3).png" alt="Option 3">
+      </label>
+      </div>
+      </div>
+      </center>
+      </div>
+      <div class="package value2" style="display: none;">
+        <div style="position:relative; margin-left: -400px; margin-top:110px;">
+        <input type="radio" style="position: absolute;left: -27%; "  class="lb outdoors" value2="ones" value="Wedding Event" name="wedding_event"  /> <p  style="color: #0e2c40; font-weight: bolder;">Wedding Event</p>
+        <input type="radio" style="position: absolute;left: -27%; " class="lb outdoors" value2="twos" value="Wedding Pre-nuptial" name="prenup_outdoor" /> <p style="color: #0e2c40; font-weight: bolder;">Wedding Pre-nuptial</p>
+        </div>
+  
+        <center>
+        <div class="edits abso ones outdoored" style="display: none; margin-top: 20px;">
+        <div class="parent">
+        <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+        <label class="labelers">
+        <input type="radio" value1="value1" class="labels" name="v1" value="Photo Package">
+        <img src="/static/images/packages/package/Wedding Event Shoot (2).png" alt="Option 1">
+        </label>
+  
+        <label class="labelers">
+        <input type="radio" value1="value2" class="labels" name="v2" value="Video Package">
+        <img src="/static/images/packages/package/Wedding Event Shoot.png" alt="Option 2">
+        </label>
+        <label class="labelers">
+        <input  type="radio" value1="value3" class="labels" name="v3" value="Photo & Video Package">
+        <img src="/static/images/packages/package/Wedding Event Shoot (5).png" alt="Option 3">
+        </label>
+        </div>
+        </div>
+        </center>
+        <center>
+          <div class="edits abso twos outdoored" style="display: none; margin-top: 20px;">
+          <div class="parent">
+          <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+          <label class="labelers">
+          <input type="radio" value1="value1" class="labels" name="v4" value="Photo Package">
+          <img src="/static/images/packages/package/Pre-Nuptial Wedding Shoot.png" alt="Option 1">
+          </label>
+    
+          <label class="labelers">
+          <input type="radio" value1="value2" class="labels" name="v5" value="Video Package">
+          <img src="/static/images/packages/package/Pre-Nuptial Wedding Shoot (2).png" alt="Option 2">
+          </label>
+          <label class="labelers">
+          <input  type="radio" value1="value3" class="labels" name="v6" value="Photo and Video Package">
+          <img src="/static/images/packages/package/Pre-Nuptial Wedding Shoot (3).png" alt="Option 3">
+          </label>
+          </div>
+          </div>
+          </center>
+        
+        </div>
+
+
+
+
+
+
+
+      </div>
+
+      <!--------------------------------------------------->
+      <div class="edit absolut select select10"  style="display: none;">
+
+      <span class="grid-span" style="color: #0e2c40; font-weight: bolder;"><input type="radio" value2="value1" name="pre_debut_outdoor" value="Pre-Debut" class="outdoors lb">Pre Debut<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 100px; ">ㅤ</p><p style="float:left ; display:block; width: 120px; height: 40px;margin-left: 40%; ">ㅤ</p></span>
+      <span class="grid-span" style="color: #0e2c40; font-weight: bolder;"><input type="radio" value2="value2" name="debut_outdoor" value="Debut" class="outdoors lb">Debut<br><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 100px; ">ㅤ</p><p style="float:left ; display:block; width: 120px; height: 40px; margin-left: 40%;">ㅤ</p></span>
+      <div class="outdoored value1" style="display: none;">
+      <center>
+      <div class="edits abso" style="margin-top: 70px;">
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels" name="predebut_outdoor1" value="Photo Album 20 Pages">
+      <img src="/static/images/packages/package/Pre-debut Outdoor Shoot (Optionals).png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels" name="predebut_outdoor2" value="Photo Album 40 Pages">
+      <img src="/static/images/packages/package/Pre-debut Outdoor Shoot (Optionals) (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels" name="predebut_outdoor3" value="Package 3">
+      <img src="/static/images/packages/package/Pre-Birthday_Casual Studio Photoshoot (3).png" alt="Option 3">
+      </label>
+      </div>
+      </div>
+      </center>
+
+      </div>
+      <div class="outdoored value2" style="display: none;">
+
+
+      <center>
+      <div class="edits abso" style="margin-top: 70px;">
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels" name="package_debut1" value="Photo Package">
+      <img src="/static/images/packages/package/Debut Event Shoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels" name="package_debut2" value="Video Package">
+      <img src="/static/images/packages/package/Debut Event Shoot (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels" name="package_debut3" value="Photo & Video Package">
+      <img src="/static/images/packages/package/Debut Event Shoot (3).png" alt="Option 3">
+      </label>
+      </div>
+      </div>
+      </center>
+
+      </div>
+
+      </div>
+
+      <div class="edit absolut select select11"  style="display: none;">
+      <center>
+      <div class="edits abso" style="margin-top: -40px; margin-left: -230px;">
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels" name="baptismal_outdoor1" value="Photo Package">
+      <img src="/static/images/packages/package/Baptismal Shoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels" name="baptismal_outdoor2" value="Video Package">
+      <img src="/static/images/packages/package/Baptismal Shoot (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels" name="baptismal_outdoor3" value="Photo & Video Package">
+      <img src="/static/images/packages/package/Baptismal Shoot (3).png" alt="Option 3">
+      </label>
+      </div>
+      </div>
+      </center>
+
+      </div>
+
+      <div class="edit absolut select select12"  style="display: none;">
+      <center>
+      <div class="edits abso" style="margin-top: -40px; margin-left: -230px;">
+      <div class="parent">
+      <p style="color: #0e2c40; font-weight: bolder; font-style: italic; font-size: 15px;">Note: To select package you need to click the image</p>
+      <label class="labelers">
+      <input type="radio" value1="value1" class="labels" name="birthday_outdoor1" value="Photo Package">
+      <img src="/static/images/packages/package/Birthday Event Shoot.png" alt="Option 1">
+      </label>
+
+      <label class="labelers">
+      <input type="radio" value1="value2" class="labels" name="birthday_outdoor2 value="Video Package">
+      <img src="/static/images/packages/package/Birthday Event Shoot (2).png" alt="Option 2">
+      </label>
+      <label class="labelers">
+      <input  type="radio" value1="value3" class="labels" name="birthday_outdoor3" value="Photo & Video Package">
+      <img src="/static/images/packages/package/Birthday Event Shoot (3).png" alt="Option 3">
+      </label>
+      </div>
+      </div>
+      </center>
+
+      </div>
+      <script>
+      function package25() {
+      if($('.packaged25').is(":checked"))   
+      $(".pack25").show();
+      else
+      $(".pack25").hide();
+      };
+      </script>
+      <script>
+      function package26() {
+      if($('.packaged26').is(":checked"))   
+      $(".pack26").show();
+      else
+      $(".pack26").hide();
+      };
+      </script>
+      <script>
+      function package27() {
+      if($('.packaged27').is(":checked"))   
+      $(".pack27").show();
+      else
+      $(".pack27").hide();
+      };
+      </script>
+      <script>
+      function package28() {
+      if($('.packaged28').is(":checked"))   
+      $(".pack28").show();
+      else
+      $(".pack28").hide();
+      };
+      </script>
+
+
+
+
+      </center>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+      <script>
+      function changed() {
+      if($('.checkall').is(":checked"))   
+      $(".hide-text").hide();
+
+      };
+      </script>
+
+      </div>
+
+
+      <style>
+
+      .go-top::after {
+      display: none;
+      }
+
+      </style >                   
+      <input type="button" name="previous" class="previous action-button-previous" value="Back" style="color:#0e2c40; border-radius: 10px;"/>
+      <input type="button" name="next" class="next action-button continue" id="post" disabled value="Next" style="color: #0e2c40; background-color: #FFDF00; border-radius: 10px;" />
+      </fieldset>
+      <fieldset>
+      <div class="form-card" id="scroll">
+      <h2 class="fs-title">Reservation Details</h2>
+      <div class="box one">
+      <input type="date" name="indoor_date" placeholder="Input Date"/>
+
+      <style>
+      .pos{
+      margin: 20px auto;
+      position: relative;
+      display: flex;
+      white-space: nowrap;
+
+      }
+      .radyo {
+      position: absolute;
+      margin-left: -130px;
+      margin-top: 50px;
+      float:left;
+
+      align-items: center;
+      justify-content:space-around;
+      }
+      </style>
+
+      <p style="color: #0e2c40; font-weight: bolder;">Choose your time</p>
+
+      <label class="pos" style="color: #0e2c40; font-weight: bolder;">7:00 - 8:30<input class="radyo" name="indoor_radio1" value="7:00 - 8:30" type="radio"></label>
+      <label class="pos"style="color: #0e2c40; font-weight: bolder;">9:00 - 10:30<input class="radyo" name="indoor_radio2" value="9:00 - 10:30" type="radio"></label>
+      <label class="pos"style="color: #0e2c40; font-weight: bolder;">11:00 - 12:30<input class="radyo" name="indoor_radio3" value="11:00 - 12:30" type="radio"></label>
+      <label class="pos"style="color: #0e2c40; font-weight: bolder;">1:30 - 3:00<input class="radyo" name="indoor_radio4" value="1:30 - 3:00" type="radio"></label>
+      <label class="pos"style="color: #0e2c40; font-weight: bolder;">3:30 - 5:00<input class="radyo" name="indoor_radio5" value="3:30 - 5:00" type="radio"></label>
+
+
+
+      <input type="number" name="number_of_people" min="0" max="10" maxlength="2" placeholder="Number of People"/>
+
+      </div>
+      <div class="box two" style="display:none ;">
+      <input type="date" name="outdoor_date" placeholder="Reservation Date"/>
+      <b>Starting Time</b>
+      <input type="time" name="outdoor_time" placeholder="Start Time"/>
+      <b>End Time</b>
+      <input type="time" name="outdoor_end" placeholder="End Time"/>
+      <input type="text" name="events_location" placeholder="Event's Location"/>
+      <textarea name="events_description" placeholder="Event's Description"></textarea>
+      </div>
+
+      <p style="color: black;">Note: Check each input. After clicking CONFIRM, you can't go back to the previous pages.</p>
+      </div>
+      <script>
+      // Reusable Function to Enforce MaxLength
+      function enforce_maxlength(event) {
+      var t = event.target;
+      if (t.hasAttribute('maxlength')) {
+      t.value = t.value.slice(0, t.getAttribute('maxlength'));
+      }
+      }
+
+      // Global Listener for anything with an maxlength attribute.
+      // I put the listener on the body, put it on whatever.
+      document.body.addEventListener('input', enforce_maxlength);
+      </script>
+      <input type="button" name="previous" class="previous action-button-previous" value="Back" style="color:#0e2c40; border-radius: 10px;"/>
+      <input type="button" name="make_payment" class="next action-button" value="Confirm" style="color: #0e2c40; background-color: #FFDF00; border-radius: 10px;"/>
+      </fieldset>
+
+      <fieldset>
+      <div class="go">
+      <div class="form-card" id="scroll">
+
+      <h2 class="fs-title">Client's Identification</h2>
+
+      <center><h4 style="color:#4F29F0;">Pansnap Studio Terms & Conditions</h4></center>
+      <div class="" >
+
+
+      <p style="color: #0e2c40;">
+      The following Terms & Conditions are between Pansnap Studio (Ms. Franzin Bautista & Mr. Jhomer Valiente) and the Client/s who will hire the studio as their photographer and/or videographer. 
+      These Terms & Conditions are also bound to the Client’s Guests/Family/Attendees during the shoot. It is the Client’s responsibility to educate and/or distribute the said Terms & Conditions to all person(s) involved in the booked session.
+      <br>
+      This agreement will become effective and binding, once the reservation or the Client has been confirmed and the payment and/or reservation fee has been received by Pansnap Studio.
+      <br>
+      <b>1.	Reservation and Payment Terms</b>
+      <br>
+      a.	The reservation of the Client/s is subject to approval. The Client should wait for a call within the day to check if the details/date that was selected is available.  
+      <br>
+      b.	Once the reservation has been approved, the client is required to pay a reservation fee not lower than Php 500 for studio shoot services and not lower than 50% of the total amount for outdoor shoot services.  
+      <br>
+      c.	The reservation fee is payable through Gcash or in the Studio within 2 days to secure the date and time agreed on. Failing to pay within the duration will remove the Client’s reserved date. 
+      <br>
+      d.	Full payment of the Client’s service balance should be done after the scheduled shoot
+      <br>
+      <b>2.	Cancellation</b>
+      <br>
+      a.	At the time the reservation takes effect, Pansnap Studio shall reserve the date and time agreed upon. If the client cancels the appointment for any reason, all of the payments are non-refundable to offset its loss of business. However, the Client can reschedule the appointment for 1 chance only.
+      <br>
+      <b>During the Shoot</b>
+      <br>
+      a.	The Client understands that appointment times are reserved according to a shooting schedule. In the case of the Client not being on time, Pansnap Studio will not be held responsible for the loss of suitable shooting time or the missed amount of images and/or videos agreed upon not obtained within the time remaining. However, the  Pansnap Studio team can adjust the time set by the Client if there is a possible chance.
+      <br>
+      b.	For studio shoots, the Client/s may bring companions/assistants,  but make sure to limit the number since the studio can accommodate a small number of people per appointment.
+      <br>
+      <b>4.	Weather Condition</b>
+      <br>
+      a.	Pansnap Studio cannot control the weather. All outdoor shoots are dependent on weather conditions. 
+      <br>
+      b.	The Client will not force the Photographer and/or Videographer to use their equipment if the weather is not suitable for the condition. In case of unsuitable weather conditions, the shoot may stop and the date will be rescheduled on an agreed date as soon as possible. 
+      <br>
+      <b>Editing Time Duration</b>
+      <br>
+      a.	After the shoot, the editing time of photos will take a minimum of 1 – 2 weeks for studio shoots while 2 – 3 weeks to a maximum of 1 month for outdoor shoots 
+      <br>
+      b.	Video editing will consume a minimum of 2 – 3 weeks to a maximum of 1 and a half months.
+      <br>
+      <b>6.	Original Files</b>
+      <br>
+      a.	All images and/or video clips captured by Photographer and Videographer are in RAW format to ensure high-quality photos and videos. No RAW files will be given to the Client under any circumstances. These files are large in size and require specialized software to view and edit. 
+      <br>
+      <b>7. Revisions</b>
+      <br>
+      a.	If the Client is not satisfied with the output/s, they may request a revision for 1 chance only to meet their desired look on the output/s. 
+      <br>
+      <b>8.	Photo and/or Video Copies</b>
+      <br>
+      a.	By default, photos and/or videos will be sent to the Facebook Account of the Client through a Google Drive folder. It will be only available for 3 weeks. The Client should ensure to download a copy of files within the said duration. After the 3 weeks duration, files inside the Google Drive folder will be automatically deleted without prior notice.
+      <br>
+      b.	The Client can have a copy of files through a flash drive by availing it in the reservation form under the additionals/extras. 
+      <br>
+      c.	Print products typically take an additional 1 to 4 weeks to finish and the Client will be contacted to collect them as soon as it's ready.
+      <br>
+      <b>9.	Social Media Posting</b>
+      <br>
+      a.	Pansnap Studio will ask permission from the Client before posting their photos and/or videos on the Facebook Page of studio. 
+      <br>
+      <b>10.	Entire Agreement</b>
+      <br>
+      a.	These Terms & Conditions contain the entire understanding between Pansnap Studio and Client/s. It supersedes all prior agreements between the parties. The only way to add or change this agreement is to do so in writing, signed by all the parties.
+      <br>
+
+      <input name="check_terms" value="checked" type="checkbox" class="form-check-input" id="exampleCheck1" style="float: left;margin-left: -340px; margin-top: 25px;"><p  style="margin-left: 20px;">Check here to indicate that you have read and agree to the Terms & Conditions of the Pansnap Studio.</p>
+
+
+      </p>
+
+      <br>
+
+      </div>
+      <center>
+      <div class="card" style="margin-top: 15px;">
+      <div class="card-body">
+      <h4 style="color: #0e2c40; font-weight: bolder;">Validation Process</h4>
+      <h5 class="card-title" style="text-align:left ; color: #0e2c40; font-weight: bolder;">Upload a Photo of your ID</h5>
+      <div id="selectedBanner">   </div>
+      <input type="file" id="img" name="larawan" accept="image/*" style="color: #0e2c40; font-weight: bolder;">
+
+
+
+      </div>
+      </div>
+      </center>
+      
+        Note: Dear Client, your reservation is subject to approval. Please wait for a call within the day to
+      check if the details/date that you selected is available. You can only pay the reservation fee once
+      your appointment has been approved. Thank you for you trust and patience.
+  
+      
+
+
+
+
+      </div>
+
+
+      <input type="submit" name="clientnext" class="next action-button disablebtn" value="Submit" style="color: #0e2c40; background-color: #FFDF00; border-radius: 10px;"/>
+      </div>
+      </fieldset>
+      
+
+              
+
+</form>
 </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+      var selDiv = "";
+      var storedFiles = [];
+      $(document).ready(function () {
+        $("#img").on("change", handleFileSelect);
+        selDiv = $("#selectedBanner");
+      });
+
+      function handleFileSelect(e) {
+        var files = e.target.files;
+        var filesArr = Array.prototype.slice.call(files);
+        filesArr.forEach(function (f) {
+          if (!f.type.match("image.*")) {
+            return;
+          }
+          storedFiles.push(f);
+
+          var reader = new FileReader();
+          reader.onload = function (e) {
+            var html =
+              '<img src="' +
+              e.target.result +
+              "\" data-file='" +
+              f.name +
+              "' class='card-img-top' alt='Card image cap' >";
+            selDiv.html(html);
+          };
+          reader.readAsDataURL(f);
+        });
+      }
+
+</script>
+<script>
+ 
+    var btn = document.querySelectorAll(".go .disablebtn")[0];
+
+    var checkBox = document.getElementById("exampleCheck1");
+    btn.disabled = !checkBox.checked;
+
+    checkBox.addEventListener("change",checkTerms);
+
+    function checkTerms(){
+      if(this.checked){
+        btn.disabled = false;
+      }else{
+        btn.disabled = true;
+      }
+    }
+
+
+  </script>
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.radio-but').click (function(){
+      var inputValue = $(this).attr('value1');
+      var targetBox =  $('.'+inputValue);
+      $('.box').not(targetBox).hide();
+      $(targetBox).show();
+
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.radio-package').click (function(){
+      var inputValue = $(this).attr('value1');
+      var targetBox =  $('.'+inputValue);
+      $('.cage').not(targetBox).hide();
+      $(targetBox).show();
+
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.radio-pack').click (function(){
+      var inputValue = $(this).attr('value1')  ;
+      var targetBox =  $('.'+inputValue);
+      $('.package').not(targetBox).hide();
+      $(targetBox).show();
+
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.radio-select').click (function(){
+      var inputValue = $(this).attr('value1')  ;
+      var targetBox =  $('.'+inputValue);
+      $('.select').not(targetBox).hide();
+      $(targetBox).show();
+
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.outdoor-radio').click (function(){
+      var inputValue = $(this).attr('value1')  ;
+      var targetBox =  $('.'+inputValue);
+      $('.radio-outdoor').not(targetBox).hide();
+      $(targetBox).show();
+
+    });
+  });
+</script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('.outdoors').click (function(){
+      var inputValue = $(this).attr('value2')  ;
+      var targetBox =  $('.'+inputValue);
+      $('.outdoored').not(targetBox).hide();
+      $(targetBox).show();
+
+    });
+  });
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+ $(document).ready(function(){
+    
+    var current_fs, next_fs, previous_fs; //fieldsets
+    var opacity;
+    
+    $(".next").click(function(){
+        
+        current_fs = $(this).parent();
+        next_fs = $(this).parent().next();
+        
+        //Add Class Active
+        $("#progressbar li").eq($("fieldset").index(next_fs)).addClass("active");
+        
+        //show the next fieldset
+        next_fs.show(); 
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+    
+                current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                });
+                next_fs.css({'opacity': opacity});
+            }, 
+            duration: 600
+        });
+    });
+    
+    $(".previous").click(function(){
+        
+        current_fs = $(this).parent();
+        previous_fs = $(this).parent().prev();
+        
+        //Remove class active
+        $("#progressbar li").eq($("fieldset").index(current_fs)).removeClass("active");
+        
+        //show the previous fieldset
+        previous_fs.show();
+    
+        //hide the current fieldset with style
+        current_fs.animate({opacity: 0}, {
+            step: function(now) {
+                // for making fielset appear animation
+                opacity = 1 - now;
+    
+                current_fs.css({
+                    'display': 'none',
+                    'position': 'relative'
+                });
+                previous_fs.css({'opacity': opacity});
+            }, 
+            duration: 600
+        });
+    });
+    
+    $('.radio-group .radio').click(function(){
+        $(this).parent().find('.radio').removeClass('selected');
+        $(this).addClass('selected');
+    });
+    
+    $(".submit").click(function(){
+        return false;
+    })
+        
+    });
+</script>
+</div>
+</div>
+<script>
+$('.r').change(function() {
+  $('.r').not(this).prop('checked', false);
+});
+</script>
+<script>
+  $('.ra').change(function() {
+  $('.ra').not(this).prop('checked', false);
+});
+</script>
+<script>
+  $('.labels').change(function() {
+  $('.labels').not(this).prop('checked', false);
+});
+</script>
+<script>
+  $('.lb').change(function() {
+  $('.lb').not(this).prop('checked', false);
+});
+</script>
+<script>
+  $('.la').change(function() {
+  $('.la').not(this).prop('checked', false);
+});
+</script>
+<script>
+  $('.y').change(function() {
+  $('.y').not(this).prop('checked', false);
+});
+</script>
+<script>
+  $('.radyo').change(function() {
+  $('.radyo').not(this).prop('checked', false);
+});
+</script>
+<script>
+  var $radio = $("input:radio");
+  $radio.change(function () {
+      if ($radio.filter(':checked').length > 1) {
+          $("#post").removeAttr("disabled");
+      } else {
+          $("#post").attr("disabled", "disabled");
+      }
+  });
+</script>
+{% else %}
+<div>
+    <main>
+      <h1>Notice</h1>
+      <p style="color: white;">
+        You need to login/sign-up to make a reservation<em>.Thankyou!</em>
+      </p>
+      <button type="button" data-toggle="modal" data-target="#loginModal">Login</button>
+    </main>
+  
+</div> 
+<form method="POST">
+  {% csrf_token %}
+
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header ">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="form-title text-center">
+                <h3 style="color:#0e2c40;">Login</h3>
+              </div>
+      
+              <div class="d-flex flex-column text-center">
+    
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="email1"placeholder="Username" name="username">
+                  </div>
+                  <div class="form-group">
+                    <input type="password" class="form-control" id="myInput" name="password" placeholder="Password">
+                    <input type="checkbox" onclick="myFunction()" style="display: block; margin: 10px 10px;" >
+                    <p style="position: absolute; margin-top: -28px; margin-left: 30px; font-size: 15px; opacity: 60%; color:black; opacity: 100%;">Show password</p>
+        
+                  </div>
+                  <button type="submit" class="btn btn-info btn-block btn-round" name="login">Login</button>
+       
+                
+            </div>
+          </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <div class="signup-section" style="color: #0e2c40;">Don't have an account? <a href="{% url 'home' %}" class="text-info"  > Sign Up</a>.</div>
+            </div>
+        </div>
+      </div> 
+</form>
+<script>
+    function myFunction() {
+      var x = document.getElementById("myInput");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+</script>
+  <!-- jQuery -->
+<script src='https://code.jquery.com/jquery-3.3.1.slim.min.js'></script>
+<!-- Popper JS -->
+<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+<!-- Bootstrap JS -->
+<script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+
+
+<script>
+    $(document).ready(function() {             
+    $('#loginModal').modal('show');
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    });
+</script>
+{% endif %}
 {%endblock content%}

@@ -26,6 +26,13 @@ SECRET_KEY = 'django-insecure-hf7cb02dl0-uo7s0orhrnqnr6^235-&fn6d*=^%2xflnw%p3ik
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'pansnapstudio26@gmail.com'
+EMAIL_HOST_PASSWORD = 'ohuaazgxvgcmlooo'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
 ALLOWED_HOSTS = []
 
 
@@ -39,7 +46,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'studio',
+    'active_link',
+    'crispy_forms',
+    'django_filters',
+
 ]
+CRISPY_TEMPLATE_PACK = 'uni_form'
+AUTH_USER_MODEL = 'studio.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -107,11 +120,12 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Manila'
 
 USE_I18N = True
 
 USE_TZ = True
+
 
 MEDIA_URL = '/images/'
 MEDIA_ROOT= os.path.join(BASE_DIR, 'static/images')

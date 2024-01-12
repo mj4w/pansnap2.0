@@ -1,40 +1,373 @@
-{% extends 'home.html'%}
+{% extends 'base_page/base.html' %}
 {% block  content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About-Us</title>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+</head>
+<style>
+
+  /*ABOUT Section*/
+
+		/*About the owners*/
+		.about-owner {
+			display: block;
+			justify-content: center;
+			margin-top: 5rem;
+			align-items: center;
+	
+		}
+
+		.about-owner h2 {
+			position:absolute; 
+			margin-top: -50px; 
+			color: #ffff;
+		}
+
+		.about-owner .image-all {
+			width: 200px;
+			clip-path: polygon(25% 0%, 100% 0%, 75% 100%, 0% 100%);
+			transition: 0.5s ease-out 100ms;
+			cursor: pointer;
+			object-fit: cover;
+      background-color: #FFDF00;
+			
+		}
+
+		.about-owner .image-all:hover {
+			transform: scale(1.05);
+      filter: none;
+		}
+
+		.about-owner .img1 {
+			height: 29rem;
+			margin-right: -30px;
+      filter: sepia(60%);
+		}
+
+		.about-owner .img2 {
+			height: 33rem;
+			margin-right: -30px;
+      filter: sepia(60%);
+		}
+
+		.about-owner .img3 {
+			height: 29rem;
+      filter: sepia(60%);
+		}
+
+		.owner-info {
+			margin-top: 200px;
+		}
+
+		.owner-info td .image-all {
+			border-radius: 10%;
+			transition: 0.5s ease-out 100ms;
+			width: 60%;
+			cursor: pointer;
+			margin-top: -100px;
+		}
+
+		.owner-info td img:hover {
+			transform: scale(1.05);
+		}
+
+		.about-pansnap-text {
+			margin-top: 100px;
+			margin-bottom: 80px;
+			margin: auto;
+    	padding-top: 40px ;
+    	padding-bottom: 20px;
+    	width: 1000px;
+    	max-width: 100%;
+			text-align: justify;
+      line-height: 35px;
+		}
+
+    .about-you-container{
+      display: block;
+    }
+
+
+    .about-you-container.overlay{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.75);
+        overflow: hidden;
+        width: 100%;
+        height: 0;
+        transition: .5s ease;
+    }
+
+    .about-you-container .about-you-image{
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      align-items: center;
+    }
+    .about-you-container:hover .overlay{
+        height: 100%;
+    }
+
+    .about-you-container .overlay h3{
+        width: 100%;
+        margin-top: 30%;
+        color:blue;
+        font-size: 4vw;
+        position: absolute;
+        text-align: center;
+        font-family: 'Serif', italic;
+        transform:rotate(-5deg)skewX(-5deg);
+    }
+    @media  (max-width: 600px) {
+
+      .image-all{
+        width: 50px;
+      }
+      .about-owner{
+        display: none;
+      }
+      .about-pansnap{
+        width: 100%;
+        padding: 20px;
+      }
+      .about-h2{
+        margin-top: 70px;
+      }
+      .owner-info{
+        margin-top: 100px;
+      }
+
+    }
+
+</style>
+<body>
+  
 <div class="content-wrapper" id="about">
-    <h2>About Us: Behind The Lens</h2>
+  <h2 class="about-h2">About Us</h2>
+    <div class="about-owner"  >
+      {% load static %}
 
-    <br><br><br>
+      <img src="{% static 'images/about-bts.jpg' %}" alt="" 
+      style=" 
+      position: absolute;
+      width: 100vw;
+      height: 790px;
+      margin-top: -121.5px;
+      object-fit: cover;
+      margin-left: -350px;
+      display: block;
+      ">
+      <div class="about" data-aos="fade-down">
+        <h2 style="color:#FFDF00; margin-top: 20px ; font-family: 'Rubik', sans-serif; margin-top: -10px;">About Us: Behind The Lens</h2>
+      </div>
 
+      
+      <div class="image-wrapper" style="align-items:center ; text-align:center; margin-top: -60px; " data-aos="zoom-in" >
+        <img class="img1 image-all" 
+          src="/static/images/Co-owner.jpg"
+          style="margin: -70px; width: 300px;"
+          alt=""/>
+  
+        <img class="img2 image-all"
+          src="/static/images/Behind the scene2.jpg"
+          style="margin: 70px; width: 300px;"
+          alt=""/>
+  
+        <img class="img3 image-all"
+          src="/static/images/Owner.jpg"
+          style="margin: -70px; width: 300px;"
+          alt=""/>
+  
+      </div>
+    </div>
+  
+  
+  <div class="owner-info" >
     <table>
-        <tr>
-            <th> <center><img src="/static/images/FranzinBautista.jpg"> </center> </th>
-            <td> <center> <b>Ms. Franzin Gael S. Bautista </b>
-                <p><br> Owner <br>  Photographer and Editor </p>
-            </center> 
-            </td> 
-            
+        
+        <tr> 
+
+            <td> <center>
+              <div class="" data-aos="fade-right" >
+                <img class= "image-all" src="/static/images/FranzinBautista2.jpg"  alt=""> 
+              </div>
+        </center> </td>
+         
+          <td>
+          <div class="" data-aos="fade-up">
+            <center>
+              <b>Ms. Franzin Gael S. Bautista </b>
+              <br> Owner <br>  
+              Photographer and Editor 
+              </center>
+          </div>
+      
+          </td>
         </tr>
+            
+       
        
         <tr>
-            <th> <center><img src="/static/images/JhomerValiente.jpg"> </center> </th>
-            <td> <center> <b> Mr. Jhomer DP. Valiente </b>
-                <p><br> Co-Owner <br> Videographer and Editor </p>
-            </center>
-            </td>
+            <td> 
+              <div class="" data-aos="fade-up">
+                <center> 
+                  <b> Mr. Jhomer DP. Valiente </b>
+                  <br> Co-Owner <br> 
+                  Videographer and Editor 
+                  </center>
+              </div>
+           
+          </td>
+
+            <td> <center>
+              <div class=""  data-aos="fade-left">
+                <img class= "image-all" src="/static/images/JhomerValiente.jpg" alt="" style="margin-top: 50px;"> 
+              </div>
+             </center> </td>
         </tr>
 
     </table>
+  </div>
 
-    <br><br><br><br>
-    <p> Pansnap Studio was established on April 26, 2021. It is located at 218 Macapatan, Barangay Balubad, Bulakan, Bulacan. We specialize in creating photos and videos for special events such as weddings, birthdays, family portraits, baptismal, etc. We aim to capture your precious moments in the form of timeless photos and videos. We will be there with you every step of the way to guarantee your special moments are captured for all time.  We want you to be able to look back at your photos and/or videos years from today and be able to relive that moment in time.
-    </p>
-    <p> Before we engage in this kind of business, we started as a hobbyist. We offer free shoots to enhance our skills and gain experience. We ask people for their feedback so that we can improve our service. Even now, we continue to learn and develop our knowledge and techniques to attract our clients. We offer our service at a budget-friendly price and we make sure that after the service, our clients will have a smile on their faces. 
-    </p>
-    
-    <br><br><br><br>
-    <h2>About You:</h2>
-    <p>Our clients welcome us in like close family so that we can immerse ourselves into the front row of their story and return that experience with genuine images/videos that reflect real moments rather than a staged interpretation.
-    </p>
 
 </div>
+  <div class="about-pansnap">
+    <div class="about-pansnap-text" data-aos="fade-up">
+     
+        <p> Pansnap Studio was established on April 26, 2021. It is located at 218 Macapatan, Barangay Balubad, Bulakan, Bulacan. We specialize in creating photos and videos for special events such as weddings, birthdays, family portraits, baptismal, etc. We aim to capture your precious moments in the form of timeless photos and videos. We will be there with you every step of the way to guarantee your special moments are captured for all time.  We want you to be able to look back at your photos and/or videos years from today and be able to relive that moment in time.
+        </p>
+        <p> Before we engage in this kind of business, we started as a hobbyist. We offer free shoots to enhance our skills and gain experience. We ask people for their feedback so that we can improve our service. Even now, we continue to learn and develop our knowledge and techniques to attract our clients. We offer our service at a budget-friendly price and we make sure that after the service, our clients will have a smile on their faces. 
+        </p>
+    </div>
+  </div>
+
+<style>
+  .main_container{
+    margin: 6% 0 0 36%;
+    position: relative;
+    width: 25%;
+
+  }
+  .image{
+    margin-bottom: 100px;
+    margin-left: -360px;
+    display: block;
+    width: 300%;
+    height: auto;
+
+  }
+  .overlay{
+    margin-left: -360px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.75);
+    overflow: hidden;
+    width: 300%;
+    height: 0;
+    transition: .5s ease;
+
+  
+  }
+  .main_container:hover .overlay{
+    height: 100%;
+  }
+  .overlay p{
+    text-align: center;
+    line-height: 70px;
+    width: 100%;
+    margin-top: 15%;
+    color: white;
+    font-size: 2.5vw;
+    position: absolute;
+    text-align: center;
+
+
+
+  }
+  .hidden-text{
+    display: none;
+  }
+  @media (max-width:600px){
+    .main_container img{
+      display: flex;
+      height: 100%;
+      width: 350%;
+      padding: 20px;
+      margin-left:-100px;
+    }
+    .overlay{
+      display: none;
+    }
+    .hidden-text{
+      display: block;
+      width: 100%;
+      padding: 20px;
+      text-align: center;
+      margin-top: -100px;
+    }
+ 
+}
+
+</style>
+<div class="main_container">
+  <img src="/static/images/AboutYou-BTS.png" class="image" data-aos="zoom-in-up">
+  <div class="overlay">
+    <p>Our clients welcome us in like close family so that we can immerse ourselves into the front row of their story and return that experience with genuine images/videos that reflect real moments rather than a staged interpretation.</p>
+
+  </div>
+
+   
+  
+  </div>
+
+  <div class="hidden-text">
+    <p>Our clients welcome us in like close family so that we can immerse ourselves into the front row of their story and return that experience with genuine images/videos that reflect real moments rather than a staged interpretation.</p>
+  </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init();
+
+// You can also pass an optional settings object
+// below listed default settings
+  AOS.init({
+    // Global settings:
+    disable: false, // accepts following values: 'phone', 'tablet', 'mobile', boolean, expression or function
+    startEvent: 'DOMContentLoaded', // name of the event dispatched on the document, that AOS should initialize on
+    initClassName: 'aos-init', // class applied after initialization
+    animatedClassName: 'aos-animate', // class applied on animation
+    useClassNames: false, // if true, will add content of `data-aos` as classes on scroll
+    disableMutationObserver: false, // disables automatic mutations' detections (advanced)
+    debounceDelay: 50, // the delay on debounce used while resizing window (advanced)
+    throttleDelay: 99, // the delay on throttle used while scrolling the page (advanced)
+    
+
+    // Settings that can be overridden on per-element basis, by `data-aos-*` attributes:
+    offset: 120, // offset (in px) from the original trigger point
+    delay: 0, // values from 0 to 3000, with step 50ms
+    duration: 1000, // values from 0 to 3000, with step 50ms
+    easing: 'ease', // default easing for AOS animations
+    once: false, // whether animation should happen only once - while scrolling down
+    mirror: false, // whether elements should animate out while scrolling past them
+    anchorPlacement: 'top-bottom', // defines which position of the element regarding to window should trigger the animation
+
+  });
+</script>
+<script>
+
+</script>
+
+</body>
+</html>
+
+  
+		
 {% endblock content %}
